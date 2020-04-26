@@ -34,19 +34,36 @@
   outline: none;
 }
 
-.pinned-notes-section {
+.notes-section-header {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.pinned-notes-section,
+.other-notes-section {
+  width: 100%;
+}
+
+.pinned-notes-container,
+.other-notes-container {
   width: 100%;
   display: flex;
-  flex-wrap: row wrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: flex-start;
   align-content: space-between;
 }
 
-.other-notes-section {
-  width: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: row wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+.note {
+  width: calc((100vw - 6rem) / 4);
+  min-width: calc((100vw - 6rem) / 4);
+  height: auto;
+  padding: 1rem;
+  margin-block-end: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  margin-inline-end: 1rem;
+}
+
+.note:hover {
+  border-color: rgba(0, 0, 0, 0.2);
 }
