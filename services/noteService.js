@@ -28,13 +28,24 @@ function save(noteToSave) {
   return Promise.resolve(savedNote);
 }
 
-function query(filterBy) {
+function query(searchStr) {
   if (!gNotes) gNotes = storageService.load(STORAGE_KEY, gDefaultNotes);
   let notes = gNotes;
-  if (filterBy) {
-    const { title } = filterBy;
-    notes = gNotes.filter(note => note.info.txt.includes(title));
-  }
+  notes = notes.filter((note) => {
+    if (note.info.txt) {
+      return note.info.txt.includes(searchStr);
+    }
+    if (note.info.todos) {
+      let match = false;
+      note.info.todos.forEach((todo) => {
+        if (todo.txt.includes(searchStr)) {
+          match = true;
+        }
+      });
+      return match;
+    }
+    return false;
+  });
   return Promise.resolve(notes);
 }
 

@@ -1,6 +1,6 @@
 import UserMsg from './UserMsg.jsx';
 import NotesSearch from '../cmps/notes/NotesSearch.jsx';
-import {EmailFilter} from '../cmps/email/EmailFilter.jsx';
+import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
 const { Route, Switch, NavLink } = ReactRouterDOM;
@@ -14,12 +14,12 @@ export default function NavBar() {
           <div className="logo"><a href="#">Appsus</a></div>
         </div>
         <Switch className="switch-search flex">
-          <Route component={ NotesSearch } path="/note" />
+          <Route component={ NotesSearch } path="/notes" />
           <Route component={ EmailFilter } path="/email" />
         </Switch>
         <div className="link-container flex">
             <NavLink exact to="/">Home</NavLink>
-            <NavLink exact to="/note">Note</NavLink>
+            <NavLink exact to="/notes">Note</NavLink>
             <NavLink exact to="/book">Book</NavLink>
             <NavLink exact to="/email">Mail</NavLink>
         </div>
