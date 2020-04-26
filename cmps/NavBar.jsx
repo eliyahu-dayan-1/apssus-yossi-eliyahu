@@ -18,7 +18,7 @@ export default function NavBar() {
         </Switch>
         <div className="link-container flex">
             <NavLink exact to="/">Home</NavLink>
-            <NavLink exact to="/note">Note</NavLink>
+            <NavLink exact to="/notes">Note</NavLink>
             <NavLink exact to="/book">Book</NavLink>
             <NavLink exact to="/mail">Mail</NavLink>
         </div>
