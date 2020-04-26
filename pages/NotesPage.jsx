@@ -18,7 +18,11 @@ export default class NotesPage extends React.Component {
 
   loadNotes() {
     noteService.query(this.state.filterBy)
-      .then(notes => this.setState({ notes }));
+      .then(notes => this.setState(prevState => ({ ...prevState, notes })));
+  }
+
+  onSetFilter = (searchTxt) => {
+    this.setState(prevState => ({ ...prevState, filter: { searchTxt } }), () => this.loadNotes());
   }
 
   render() {

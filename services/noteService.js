@@ -1,43 +1,13 @@
 import { makeId } from './utilService.js';
 import { storageService } from './storageService.js';
+import getDefaultNotes from './defaultNotesService.js';
 
 export default {
   query,
 };
 
 const STORAGE_KEY = 'notes';
-const gDefaultNotes = [
-  {
-    id: 'T_jj54If45Hii',
-    type: 'NoteText',
-    isPinned: true,
-    info: {
-      txt: 'Fullstack Me Baby!',
-    },
-  },
-  {
-    id: 'z2gf2eef25sri',
-    type: 'NoteImg',
-    info: {
-      url: 'http://some-img/me',
-      title: 'Me playing Mi',
-    },
-    style: {
-      backgroundColor: '#00d',
-    },
-  },
-  {
-    id: 'psa4_nnytre11',
-    type: 'NoteTodos',
-    info: {
-      label: 'How was it:',
-      todos: [
-        { txt: 'Do that', doneAt: null },
-        { txt: 'Do this', doneAt: 187111111 },
-      ],
-    },
-  },
-];
+const gDefaultNotes = getDefaultNotes();
 let gNotes = null;
 createNotes();
 
