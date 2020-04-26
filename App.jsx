@@ -17,7 +17,7 @@ export class App extends React.Component {
             <Router >
                 <div className="page-container flex column">
                     {/* <header> */}
-                    {/* <NavBar /> */}
+                    <NavBar />
                     {/* main */}
                     <Switch>
                         <Route exact component={HomePage} path="/" />

@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 
 body{
@@ -74,12 +74,12 @@ header img{
 
 /* main */
 
-/* main{
+main{
     width: 100%;
     flex-grow: 1;
     position: relative;
-    background-color: gainsboro;
-} */
+    /* background-color: gainsboro; */
+}
 
 /* footer */
 
@@ -95,4 +95,3 @@ footer .logo{
     font-size: 25px;
     
 }
-

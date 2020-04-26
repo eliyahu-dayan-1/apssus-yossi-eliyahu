@@ -15,19 +15,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1rem;
-  border: solid transparent;
-  box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 2px 6px 2px rgba(60, 64, 67, 0.149);}
+}
 
 .add-note-input {
   height: 100%;
+  width: 20%;
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
+  border: solid transparent;
+  border-radius: 0.5rem;
+  box-shadow:
+  0 1px 2px 0 rgba(60, 64, 67, 0.302),
+  0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
 .add-note-input:active,
 .add-note-input:focus {
   outline: none;
+}
+
+.pinned-notes-section {
+  width: 100%;
+  display: flex;
+  flex-wrap: row wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.other-notes-section {
+  width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
