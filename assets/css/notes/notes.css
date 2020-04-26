@@ -1,0 +1,33 @@
+.note-page-container {
+  width: 100%;
+  height: 100;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.add-note-section {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  border: solid transparent;
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);}
+
+.add-note-input {
+  height: 100%;
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 0.5rem;
+}
+
+.add-note-input:active,
+.add-note-input:focus {
+  outline: none;
+}
