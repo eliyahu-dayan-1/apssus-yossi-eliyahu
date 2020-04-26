@@ -6,7 +6,7 @@ export const emailService = {
     add
 }
 
-const MAILS_KEY = 'books'
+const MAILS_KEY = 'mails'
 
 var gMails = null
 
@@ -44,18 +44,21 @@ function getById(id) {
 
 const gDefaultBooks = [
     {
+        id: 1,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930594
     },
     {
+        id: 2,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930594
     },
     {
+        id: 3,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,

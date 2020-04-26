@@ -53,7 +53,7 @@ export default class EmailPage extends React.Component {
             <main>
                 {selectedEmail && <EmailStatus />}
                 {!selectedEmail && emailsToShow && <EmailFilter />}
-                {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} books={emailsToShow} />}
+                {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />}
             </main>
         )
     }
