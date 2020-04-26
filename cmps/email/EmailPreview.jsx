@@ -21,15 +21,17 @@ export function EmailPreview(props) {
         // Will display time in 10:30:23 format
         var clock = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-        return `${day}/ ${day} Month/ ${day}year + " " + clock`
+        return `${day}/${Month}/${year} ${clock}`
     }
+    console.log(email)
 
-    return (<Link className="email-preview further-details flex" to={`/email/${email.id}`} >
-        <div className="readBox"></div>
-        <div className="star"></div>
-        <div className="bookmark"></div>
-        <p><span>subject:</span> {email.subject}</p>
-        <p><span>body:</span> {email.body}</p>
+    return (<Link className="email-preview further-details flex space-between" to={`/email/${email.id}`} >
+        <div className="choose"></div>
+        <div className="star">*</div>
+        <div className="bookmark">^</div>
+        <div className="from"></div>
+        <div className="subject">{email.subject}</div>
+        <div className="body">{email.body}</div>}
         <div className="date">{convertTimeStamp()}</div>
     </Link>)
 }

@@ -54,6 +54,11 @@ header .logo{
     padding:  20px 0px;
 }
 
+header .switch-search{
+    text-align: center;
+    align-items: center;
+}
+
 .link-container > *{
     font-size: 20;
 }

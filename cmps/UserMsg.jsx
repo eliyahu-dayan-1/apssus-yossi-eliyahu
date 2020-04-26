@@ -1,4 +1,4 @@
-import eventBus from '../services/eventBusService.js';
+import {eventBus} from '../services/eventBusService.js';
 
 export default class UserMsg extends React.Component {
     state = {

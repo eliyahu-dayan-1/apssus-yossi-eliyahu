@@ -5,6 +5,8 @@ import { emailService } from '../services/emailService.js';
 import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailStatus } from '../cmps/email/EmailStatus.jsx';
+import { eventBus } from "../services/eventBusService.js";
+
 
 
 export default class EmailPage extends React.Component {
@@ -17,6 +19,8 @@ export default class EmailPage extends React.Component {
 
     componentDidMount() {
         this.loadEmails()
+        eventBus.on('show-msg', (msg) => console.log(msg))
+
     }
 
     onSetFilter = (filterBy) => {
@@ -52,7 +56,6 @@ export default class EmailPage extends React.Component {
 
             <main>
                 {selectedEmail && <EmailStatus />}
-                {!selectedEmail && emailsToShow && <EmailFilter />}
                 {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />}
             </main>
         )
