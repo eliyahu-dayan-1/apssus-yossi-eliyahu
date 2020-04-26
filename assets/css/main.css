@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
+
+body{
+    margin: 0;
+}
+
+button{
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+    padding: 0;
+}
+
+/* page */
+.page-container{
+    min-height: 100vh;
+}
+
+/* nav bar */
+header, footer, .header a{
+    background-color: rgb(106, 150, 192);
+    color: black;
+}
+
+header{
+    padding: 0px 20px;
+}
+
+.logo-container > *:first-child{
+    margin-right: 20px;
+}
+
+.logo{
+    font-size: 2.5rem;
+}
+
+header .logo{
+    padding:  20px 0px;
+}
+
+.link-container > *{
+    font-size: 20;
+}
+
+.link-container > *:not(:last-child){
+    margin-right: 10px;
+    border-right: 1px solid black;
+    padding-right: 10px;
+}
+
+header .active{
+    font-weight: bold;
+}
+
+header img{
+    width: 60px;
+}
+
+/* main */
+
+main{
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+    background-color: gainsboro;
+}
+
+/* footer */
+
+footer .logo-container img {
+    height: 30px;;
+}
+
+footer{
+    padding: 10px;
+}
+
+footer .logo{
+    font-size: 25px;
+    
+}
+
