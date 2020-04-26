@@ -9,6 +9,7 @@ export default function NavBar(props) {
       <div className="logo-container flex">
         <div className="logo"><a href="#">Appsus</a></div>
       </div>
+      
       <div className="link-container flex">
         <NavLink exact to="/">Home</NavLink>
         <NavLink exact to="/note">Note</NavLink>
