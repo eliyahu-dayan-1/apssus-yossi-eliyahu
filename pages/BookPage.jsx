@@ -1,6 +1,6 @@
 export default class BookPage extends React.Component {
 
-    render() {
+  render() {
         return (
             
             <main>
