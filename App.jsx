@@ -1,36 +1,29 @@
-const Router = ReactRouterDOM.HashRouter
-const { Route, Switch } = ReactRouterDOM
-const history = History.createBrowserHistory()
+import HomePage from './pages/HomePage.jsx';
+import NotesPage from './pages/NotesPage.jsx';
+import BookPage from './pages/BookPage.jsx';
+import EmailPage from './pages/EmailPage.jsx';
+import Footer from './cmps/Footer.jsx';
+import NavBar from './cmps/NavBar.jsx';
 
-import HomePage from './pages/HomePage.jsx'
-import NotePage from './pages/NotePage.jsx'
-import BookPage from './pages/BookPage.jsx'
-import EmailPage from './pages/EmailPage.jsx'
-import Footer from './cmps/Footer.jsx'
-import NavBar from './cmps/NavBar.jsx'
+const Router = ReactRouterDOM.HashRouter;
+const { Route, Switch } = ReactRouterDOM;
+const history = History.createBrowserHistory();
 
-
-export class App extends React.Component {
-
-    render() {
-        return (
-            <Router >
-                <div className="page-container flex column">
-                    {/* <header> */}
-                    <NavBar />
-                    {/* main */}
-                    <Switch>
-                        <Route exact component={HomePage} path="/" />
-                        <Route component={NotePage} path="/note" />
-                        <Route component={BookPage} path="/book" />
-                        <Route component={EmailPage} path="/mail" />
-                    </Switch>
-                    {/*footer */}
-                    <Footer />
-                </div>
-            </Router >
-
-        )
-    }
+export default class App extends React.Component {
+  render() {
+    return (
+      <Router >
+        <div className="page-container flex column">
+          <NavBar />
+          <Switch>
+              <Route exact component={ HomePage } path="/" />
+              <Route component={ NotesPage } path="/notes" />
+              <Route component={ BookPage } path="/book" />
+              <Route component={ EmailPage } path="/mail" />
+          </Switch>
+          <Footer />
+        </div>
+      </Router >
+    );
+  }
 }
-
