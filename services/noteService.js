@@ -5,6 +5,7 @@ import getDefaultNotes from './defaultNotesService.js';
 export default {
   query,
   save,
+  createTextNote,
 };
 
 const STORAGE_KEY = 'notes';
@@ -17,8 +18,17 @@ function createNotes() {
   storageService.store(STORAGE_KEY, gNotes);
 }
 
-function creatTextNote() {
-// TODO
+function createTextNote(txt) {
+  const newNote = {
+    id: makeId(12),
+    type: 'NoteText',
+    isPinned: false,
+    info: {
+      txt,
+    },
+  };
+  gNotes.push(newNote);
+  storageService.store(STORAGE_KEY, gNotes);
 }
 
 function save(noteToSave) {

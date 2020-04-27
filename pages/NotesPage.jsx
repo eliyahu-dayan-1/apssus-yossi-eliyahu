@@ -36,7 +36,7 @@ export default class NotesPage extends React.Component {
     const { searchTxt } = filter;
     return (
       <main className="notes-page-container">
-        <AddNoteSection />
+        <AddNoteSection searchTxt={ searchTxt } />
         <PinnedNotesSection notes={ notes } searchTxt={ searchTxt } />
         <OtherNotesSection notes={ notes } searchTxt={ searchTxt } />
       </main>
