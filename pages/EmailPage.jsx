@@ -4,13 +4,10 @@ const history = History.createBrowserHistory();
 
 
 import { emailService } from '../services/emailService.js';
-import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
-import { EmailList } from '../cmps/email/EmailList.jsx';
-import { EmailStatus } from '../cmps/email/EmailStatus.jsx';
-import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
-import { EmailNevigationUp } from '../cmps/email/EmailNevigationUp.jsx';
-import { EmailNevigationSide } from '../cmps/email/EmailNevigationSide.jsx';
 import { eventBus } from "../services/eventBusService.js";
+import { EmailList } from '../cmps/email/EmailList.jsx';
+import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
+import { EmailNavBarSide } from '../cmps/email/EmailNavBarSide.jsx';
 
 
 
@@ -56,21 +53,26 @@ export default class EmailPage extends React.Component {
     }
 
 
+
     render() {
 
-        const { emailsToShow, selectedEmail} = this.state
+        const { emailsToShow, selectedEmail } = this.state
 
 
         return (
+            <Router >
+                <main className="email-main flex">
+                    <EmailNavBarSide />
 
-            <main>
-                {<EmailNevigationUp />}
-                {<EmailNevigationSide />}
-                {emailsToShow && <EmailStatus />}
-                
-                {selectedEmail && <EmailDetails selectedEmail={selectedEmail} />}
-                {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />}
-            </main>
+                    <Switch>
+                        <Route exact component={EmailList} path="/email/:previewType" />
+                        <Route component={EmailDetails} path="/email/:previewType/:emailId" />
+                    </Switch>
+                </main>
+            </Router >
         )
     }
 }
+
+{/* {selectedEmail && <EmailDetails selectedEmail={selectedEmail} />}
+{!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />} */}

@@ -19,8 +19,7 @@ export default class App extends React.Component {
               <Route exact component={ HomePage } path="/" />
               <Route component={ NotesPage } path="/notes" />
               <Route component={ BookPage } path="/book" />
-              <Route component={ EmailPage } path="/email/:emailId" />
-              <Route component={ EmailPage } path="/email" />
+              <Route component={ EmailPage } path="/email/:previewType" />
           </Switch>
           <Footer />
         </div>

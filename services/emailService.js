@@ -11,7 +11,7 @@ const MAILS_KEY = 'mails'
 var gMails = null
 
 function _getGMails() {
-    gMails = storageService.load(MAILS_KEY, gDefaultBooks);
+    gMails = storageService.load(MAILS_KEY, gDefaultEmails);
     storageService.store(MAILS_KEY, gMails);
 }
 
@@ -53,31 +53,51 @@ function _getIdxById(id) {
     return gMails.findIndex(book => book.id === id);
 }
 
+function changeEmailProprty(emailId, property, value){
+    gMails[emailId][property] = value;
+    return new Promise((resolve, reject) =>{
+        if(gMails[emailId][property] === value) return resolve('value is change');
+        else return reject('value isnt change')
+    })
+}
+
 function getById(id) {
     return Promise.resolve(gMails.find(book => book.id === id));
 }
 
-const gDefaultBooks = [
+const gDefaultEmails = [
     {
         id: 1,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133333333
+        sentAt: 1551133333333,
+        isReaded: false,
+        isMarked: false,
+        isBookmarked: false,
+        isStared: false
     },
     {
         id: 2,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133000000
+        sentAt: 1551133000000,
+        isReaded: true,
+        isMarked: false,
+        isImportant: false,
+        isStared: false
     },
     {
         id: 3,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133222222
+        sentAt: 1551133222222,
+        isReaded: false,
+        isMarked: false,
+        isBookmarked: true,
+        isStared: true
     }
 ];
 

@@ -1,7 +1,61 @@
+
+.email-main{
+    margin-top: 10px;
+    padding-right: 20px;
+}
+
+.side-nav{
+    padding-right: 20px;
+}
+
+.side-nav > *:not(h2){
+    cursor: pointer;
+}
+
+.side-nav .compose{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 0 2px black;
+    border-radius: 999px;
+}
+
+.side-nav .filter{
+    background-color: rgb(47, 47, 177, 0.2);
+    border-radius: 0px 81px 81px 0px;
+    padding: 10px 0;
+    text-align: center;
+    transition: .5s;
+}
+
+.side-nav .filter:hover{
+    background-color: rgb(47, 47, 177, 0.8);
+
+}
+
+.side-nav .filter:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.email-list{
+    margin-inline-start: 20px;
+}
+
+
 .emails-preview{
-    width: 100%;
+    background-color: rgba(214, 213, 213, 0.192);
 }
 
 .email-preview{
     width: 100%;
+    padding: 20px 10px;
+    border-bottom: 1px solid rgba(214, 213, 213, 0.8);;
+}
+
+.email-preview:not(:last-child){
+    border-bottom: ;
+}
+
+.icon > img{
+    width: 10px;
 }

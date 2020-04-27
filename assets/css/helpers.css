@@ -23,6 +23,10 @@
     flex-wrap: wrap;
 }
 
+.flex.grow-1{
+    flex-grow: 1;
+}
+
 .clean-list {
     list-style-type: none;
     margin: 0;

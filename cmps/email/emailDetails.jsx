@@ -12,8 +12,9 @@ export class EmailDetails extends React.Component {
     }
 
     componentDidMount() {
-        emailService.getById(this.props.selectedEmail)
-            .then(email => this.setState({email}, () => console.log(this.state.email))
+        const { emailId } = this.props.match.params
+        emailService.getById(parseInt(emailId))
+            .then(email => this.setState({ email }, () => console.log(this.state.email))
             )
     }
 
@@ -47,17 +48,23 @@ export class EmailDetails extends React.Component {
         const { email } = this.state;
         const { convertTimeStamp } = this;
 
-        if(!email) return <Loading/>
+        if (!email) return <Loading />
 
         return (
-            <div>
-                <div className="choose"></div>
-                <div className="star">*</div>
-                <div className="bookmark">^</div>
-                <div className="from"></div>
-                <div className="subject">{email.subject}</div>
-                <div className="body">{email.body}</div>}
+            <div className="flex column grow-1">
+                <div onClick={() => {
+            
+            history.goBack();
+        }}>back</div>
+                <div>
+                    <div className="choose"></div>
+                    <div className="star">*</div>
+                    <div className="bookmark">^</div>
+                    <div className="from"></div>
+                    <div className="subject">{email.subject}</div>
+                    <div className="body">{email.body}</div>}
                 <div className="date">{convertTimeStamp()}</div>
+                </div>
             </div>
         )
     }

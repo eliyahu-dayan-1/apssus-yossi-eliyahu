@@ -1,7 +1,12 @@
 const { Link } = ReactRouterDOM
 
+
 export function EmailPreview(props) {
     const { email, onSelectEmail } = props
+
+    function iconLink(iconName) {
+        return <img src={`../../assets/img/icons/${iconName}`} alt="iconName" />
+    }
 
     function convertTimeStamp() {
         var date = new Date(email.sentAt);
@@ -24,13 +29,17 @@ export function EmailPreview(props) {
         return `${day}/${Month}/${year} ${clock}`
     }
 
-    return (<Link className="email-preview further-details flex space-between" onClick = {() => onSelectEmail(email.id)} >
-        <div className="choose"></div>
-        <div className="star">*</div>
-        <div className="bookmark">^</div>
-        <div className="from"></div>
-        <div className="subject">{email.subject}</div>
-        <div className="body">{email.body}</div>}
-        <div className="date">{convertTimeStamp()}</div>
-    </Link>)
+    return (
+        <Link className="email-preview further-details flex space-between" onClick={() => onSelectEmail(email.id)} >
+            <div className="icon choose">{(email.isMark) ? iconLink("check-box-full.png") : iconLink("check-box-empty.png")}</div>
+            <div className="icon choose">{(email.isReaded) ? iconLink("message-full.png") : iconLink("message-empty.png")}</div>
+            <div className="icon star">{(email.isStared) ? iconLink("star-full.png") : iconLink("star-empty.png")}</div>
+            <div className="icon bookmark">{(email.isImportant) ? iconLink("bookmark-full.png") : iconLink("bookmark-empty.png")}</div>
+            <div className="from">{email.from}</div>
+            <div className="subject">{email.subject}</div>
+            <div className="body">{email.body}</div>
+            <div className="date">{convertTimeStamp()}</div>
+        </Link>
+    )
+
 }
