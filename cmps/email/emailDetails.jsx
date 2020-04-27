@@ -51,11 +51,11 @@ export class EmailDetails extends React.Component {
         if (!email) return <Loading />
 
         return (
-            <div className="flex column grow-1">
-                <div onClick={() => {
+            <div className="email-details flex column grow-1">
+                <div className="return" onClick={() => {
             
             history.goBack();
-        }}>back</div>
+        }}></div>
                 <div>
                     <div className="choose"></div>
                     <div className="star">*</div>

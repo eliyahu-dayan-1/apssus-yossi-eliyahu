@@ -41,6 +41,10 @@
     margin-inline-start: 20px;
 }
 
+.email-list .navbar-up{
+    padding: 20px 10px;
+}
+
 
 .emails-preview{
     background-color: rgba(214, 213, 213, 0.192);
@@ -58,4 +62,10 @@
 
 .icon > img{
     width: 10px;
+}
+
+.email-details .return{
+    content:url(../../img/icons/return.png);
+    width: 30px;
+    cursor: pointer;
 }
