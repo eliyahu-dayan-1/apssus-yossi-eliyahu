@@ -37,6 +37,8 @@
 .notes-section-header {
   font-size: 1.2rem;
   text-transform: uppercase;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
 }
 
 .pinned-notes-section,
@@ -50,20 +52,24 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  align-content: space-between;
+  align-items: flex-start;
 }
 
 .note {
-  width: calc((100vw - 6rem) / 4);
-  min-width: calc((100vw - 6rem) / 4);
+  width: calc((100vw - 5rem) / 4);
+  min-width: calc((100vw - 5rem) / 4);
   height: auto;
   padding: 1rem;
   margin-block-end: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   margin-inline-end: 1rem;
 }
 
+.note:nth-child(4) {
+  margin-inline-end: 0;
+}
+
 .note:hover {
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.3);
 }
