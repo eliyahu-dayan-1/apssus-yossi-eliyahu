@@ -1,14 +1,10 @@
 import noteService from '../../services/noteService.js';
+import { eventBus } from '../../services/eventBusService.js';
 
 export default class NoteText extends React.Component {
   state = {
     isContentEditable: false,
-    note: {
-      isPinned: false,
-      info: {
-        txt: '',
-      },
-    },
+    note: {},
   }
 
   componentDidMount() {
@@ -17,12 +13,15 @@ export default class NoteText extends React.Component {
 
   loadNote() {
     this.setState(prevState =>
-      ({ ...prevState, note: this.props }));
+      ({ ...prevState, note: this.props.note }));
   }
 
   togglePin = () => {
     this.setState(prevState =>
-      ({ ...prevState, note: { ...prevState.note, isPinned: !prevState.note.isPinned } }));
+      ({ ...prevState, note: { ...prevState.note, isPinned: !prevState.note.isPinned } }), () => {
+      noteService.save(this.state.note);
+      eventBus.emit('search-notes', this.props.searchTxt);
+    });
   }
 
   makeEditable = () => {
@@ -30,24 +29,22 @@ export default class NoteText extends React.Component {
       ({ ...prevState, isContentEditable: true }));
   }
 
-  unMakeEditable = () => {
-    this.setState(prevState =>
-      ({ ...prevState, isContentEditable: false }));
-  }
+  // unMakeEditable = () => {
+  //   this.setState(prevState =>
+  //     ({ ...prevState, isContentEditable: false }));
+  // }
 
   handleChange = ({ target }) => {
     const txt = target.innerText;
     this.setState(prevState =>
       ({ ...prevState, note: { ...prevState.note, info: { txt } } }), () => {
-      console.log('this state:', this.state)
-      noteService.save(this.state.note)
-        .then(this.loadNote());
+      noteService.save(this.state.note);
     });
   }
 
   render() {
-    // console.log(this.state)
     const { isContentEditable, note } = this.state;
+    console.log(isContentEditable);
     const { isPinned } = note;
     const { txt } = note.info || this.props.note.info;
     return (
@@ -55,14 +52,15 @@ export default class NoteText extends React.Component {
         <section
           className="note-content-section"
           contentEditable={ isContentEditable }
+          suppressContentEditableWarning={ true }
           onClick={ this.makeEditable }
           onBlur={ this.handleChange }>
           {txt}
         </section>
         <section className="note-controls-section">
-          {/* <button className="toggle-pin-button" onClick={ this.togglePin }>
-            {}
-          </button> */}
+          <button className="toggle-pin-button" onClick={ this.togglePin }>
+            {isPinned ? 'Unpin' : 'Pin'}
+          </button>
         </section>
       </article>
     );

@@ -22,14 +22,9 @@ function creatTextNote() {
 }
 
 function save(noteToSave) {
-  console.log('note to save', noteToSave)
-  console.log('gNotes[0]', gNotes[0]);
-  const savedNote = noteToSave;
   const noteIdx = getIdxById(noteToSave.id);
   gNotes[noteIdx] = noteToSave;
-  // console.log(gNotes[0].info.txt)
   storageService.store(STORAGE_KEY, gNotes);
-  // return Promise.resolve(savedNote);
   return Promise.resolve();
 }
 
