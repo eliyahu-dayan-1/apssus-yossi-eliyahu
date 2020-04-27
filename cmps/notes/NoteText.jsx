@@ -36,9 +36,20 @@ export default class NoteText extends React.Component {
     });
   }
 
+  buttonStyle = () => {
+    const { isPinned } = this.state.note;
+    if (isPinned) {
+      return {
+        backgroundImage: "url('/assets/img/pin-black.png')",
+      };
+    }
+    return {
+      backgroundImage: "url('/assets/img/pin-gray.png')",
+    };
+  };
+
   render() {
     const { note } = this.state;
-    const { isPinned } = note;
     const { txt } = note.info || this.props.note.info;
     return (
       <article className="note text-note">
@@ -50,12 +61,8 @@ export default class NoteText extends React.Component {
           {txt}
         </section>
         <section className="note-controls-section">
-          <button className="toggle-pin-button" onClick={ this.togglePin }>
-            {isPinned ? 'Unpin' : 'Pin'}
-          </button>
-          <button className="remove-note-button" onClick={ this.removeNote }>
-            Delete
-          </button>
+          <button className="toggle-pin-button" onClick={ this.togglePin } style={ this.buttonStyle() }></button>
+          <button className="remove-note-button" onClick={ this.removeNote }></button>
         </section>
       </article>
     );
