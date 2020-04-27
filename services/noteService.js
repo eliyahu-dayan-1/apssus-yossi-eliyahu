@@ -29,6 +29,7 @@ function createTextNote(txt) {
   };
   gNotes.push(newNote);
   storageService.store(STORAGE_KEY, gNotes);
+  return Promise.resolve(newNote);
 }
 
 function save(noteToSave) {

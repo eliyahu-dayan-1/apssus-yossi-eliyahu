@@ -4,19 +4,21 @@ import { eventBus } from '../../services/eventBusService.js';
 export default class AddNoteSection extends React.Component {
   state = {
     type: 'NodeText',
-    txt: '',
+    txt: null,
   }
 
   setTypeText = () => {
     this.setState(prevState => ({ ...prevState, type: 'NodeText' }));
   }
 
-  handleChange = ({ target }) => {
-    const txt = target.innerText;
+  createNote = (e) => {
+    const txt = e.target.innerText;
     this.setState(prevState =>
-      ({ ...prevState, txt }), () => {
-      noteService.createTextNote(txt);
-      eventBus.emit('search-notes', this.props.searchTxt);
+      ({ ...prevState, txt: '' }), () => {
+      noteService.createTextNote(txt)
+        .then(() => {
+          eventBus.emit('search-notes', this.props.searchTxt);
+        });
     });
   }
 
@@ -29,7 +31,7 @@ export default class AddNoteSection extends React.Component {
           className="add-note-input"
           contentEditable={ true }
           suppressContentEditableWarning={ true }
-          onBlur={ this.handleChange }
+          onBlur={ this.createNote }
           placeholder="Take a note...">
           {txt}
         </div>

@@ -3,7 +3,6 @@ import { eventBus } from '../../services/eventBusService.js';
 
 export default class NoteText extends React.Component {
   state = {
-    // isContentEditable: false,
     note: {},
   }
 
@@ -24,16 +23,6 @@ export default class NoteText extends React.Component {
     });
   }
 
-  // makeEditable = () => {
-  //   this.setState(prevState =>
-  //     ({ ...prevState, isContentEditable: true }));
-  // }
-
-  // unMakeEditable = () => {
-  //   this.setState(prevState =>
-  //     ({ ...prevState, isContentEditable: false }));
-  // }
-
   handleChange = ({ target }) => {
     const txt = target.innerText;
     this.setState(prevState =>
@@ -43,8 +32,7 @@ export default class NoteText extends React.Component {
   }
 
   render() {
-    const { isContentEditable, note } = this.state;
-    // console.log(isContentEditable);
+    const { note } = this.state;
     const { isPinned } = note;
     const { txt } = note.info || this.props.note.info;
     return (
@@ -53,7 +41,6 @@ export default class NoteText extends React.Component {
           className="note-content-section"
           contentEditable={ true }
           suppressContentEditableWarning={ true }
-          // onClick={ this.makeEditable }
           onBlur={ this.handleChange }>
           {txt}
         </section>
