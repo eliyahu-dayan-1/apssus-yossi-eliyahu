@@ -23,6 +23,11 @@ export default class NoteText extends React.Component {
     });
   }
 
+  removeNote = () => {
+    noteService.remove(this.state.note.id);
+    eventBus.emit('search-notes', this.props.searchTxt);
+  }
+
   handleChange = ({ target }) => {
     const txt = target.innerText;
     this.setState(prevState =>
@@ -47,6 +52,9 @@ export default class NoteText extends React.Component {
         <section className="note-controls-section">
           <button className="toggle-pin-button" onClick={ this.togglePin }>
             {isPinned ? 'Unpin' : 'Pin'}
+          </button>
+          <button className="remove-note-button" onClick={ this.removeNote }>
+            Delete
           </button>
         </section>
       </article>

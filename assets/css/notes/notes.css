@@ -64,18 +64,20 @@
 }
 
 .note {
-  width: calc((100vw - 6rem) / 4);
   min-width: calc((100vw - 6rem) / 4);
+  max-width: calc((100vw - 6rem) / 4);
   height: auto;
   padding: 1rem;
   margin-block-end: 1rem;
+  margin-inline-end: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
-  margin-inline-end: 1rem;
+
+  /* align-self: stretch; */
   white-space: pre-wrap;
 }
 
-.note:nth-child(4) {
+.note:nth-child(4n+0) {
   margin-inline-end: 0;
 }
 
