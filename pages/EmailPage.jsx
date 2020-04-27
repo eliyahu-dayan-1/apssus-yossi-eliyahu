@@ -8,6 +8,7 @@ import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailStatus } from '../cmps/email/EmailStatus.jsx';
 import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
+// import { EmailNevigation } from '../cmps/email/EmailNevigation.jsx';
 import { eventBus } from "../services/eventBusService.js";
 
 
@@ -36,7 +37,6 @@ export default class EmailPage extends React.Component {
 
     onSelectEmail = (selectedEmail) => {
         this.setState({ selectedEmail }, () => this.props.history.push(`/email/${selectedEmail}`))
-   
     }
 
     onUnSelectEmail = () => {
@@ -52,8 +52,8 @@ export default class EmailPage extends React.Component {
             .then(emailsToShow => {
                 this.setState({ emailsToShow }, () => console.log(this.state.emailsToShow))
             })
-
     }
+
 
     render() {
 
@@ -63,8 +63,10 @@ export default class EmailPage extends React.Component {
         return (
 
             <main>
+                {/* {<EmailNevigation />} */}
                 {emailsToShow && <EmailStatus />}
-                {selectedEmail && <EmailDetails />}
+                
+                {selectedEmail && <EmailDetails selectedEmail={selectedEmail} />}
                 {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />}
             </main>
         )
