@@ -102,17 +102,17 @@
 }
 
 .toggle-pin-button {
-  background-image: url(/assets/img/pin-black.png);
+  background-image: url(../assets/img/pin-black.png);
   background-size: contain;
 }
 
 .remove-note-button {
-  background-image: url(/assets/img/delete.png);
+  background-image: url(../assets/img/delete.png);
   background-size: contain;
 }
 
 .toggle-palette-button {
-  background-image: url(/assets/img/palette-black.png);
+  background-image: url(../assets/img/palette-black.png);
   background-size: contain;
 }
 
