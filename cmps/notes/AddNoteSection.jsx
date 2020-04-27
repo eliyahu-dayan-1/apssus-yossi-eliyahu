@@ -12,14 +12,16 @@ export default class AddNoteSection extends React.Component {
   }
 
   createNote = (e) => {
+    e.preventDefault();
     const txt = e.target.innerText;
     this.setState(prevState =>
-      ({ ...prevState, txt: '' }), () => {
-      noteService.createTextNote(txt)
-        .then(() => {
-          eventBus.emit('search-notes', this.props.searchTxt);
-        });
-    });
+      ({ ...prevState, txt: null }));
+    noteService.createTextNote(txt)
+      .then(() => {
+        eventBus.emit('search-notes', this.props.searchTxt);
+        this.setState(prevState =>
+          ({ ...prevState, txt: '' }));
+      });
   }
 
   render() {
