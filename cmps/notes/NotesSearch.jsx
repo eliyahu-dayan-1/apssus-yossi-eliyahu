@@ -27,7 +27,7 @@ export default class NotesSearch extends React.Component {
         value={ searchStr }
         className="search-notes-input"
         onChange={ this.handleChange }
-        placeholder="Search" />
+        placeholder="Search note..." />
     );
   }
 }
