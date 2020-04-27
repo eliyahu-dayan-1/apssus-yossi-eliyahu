@@ -24,6 +24,7 @@ function createTextNote(txt) {
     id: makeId(12),
     type: 'NoteText',
     isPinned: false,
+    color: 'white',
     info: {
       txt,
     },

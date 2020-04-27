@@ -98,16 +98,87 @@
 .note button {
   width: 1rem;
   height: 1rem;
-  background-color: white;
   margin-inline-end: 0.5rem;
 }
 
 .toggle-pin-button {
-  /* background-image: url(../../img/pin-black.png); */
+  background-image: url(../../img/pin-black.png);
   background-size: contain;
 }
 
 .remove-note-button {
   background-image: url(../../img/delete.png);
   background-size: contain;
+}
+
+.toggle-palette-button {
+  background-image: url(../../img/palette-black.png);
+  background-size: contain;
+}
+
+.palette {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.palette button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  margin-block-start: 1rem;
+}
+
+.palette button:hover {
+  border-color: black;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: lightcoral;
+}
+
+.orange {
+  background-color: goldenrod;
+}
+
+.yellow {
+  background-color: khaki;
+}
+
+.green {
+  background-color: palegreen;
+}
+
+.teal {
+  background-color: paleturquoise;
+}
+
+.blue {
+  background-color: lightcyan;
+}
+
+.darkblue {
+  background-color: lightblue;
+}
+
+.purple {
+  background-color: plum;
+}
+
+.pink {
+  background-color: mistyrose;
+}
+
+.brown {
+  background-color: wheat;
+}
+
+.gray {
+  background-color: lavender;
 }
