@@ -8,7 +8,8 @@ import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailStatus } from '../cmps/email/EmailStatus.jsx';
 import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
-// import { EmailNevigation } from '../cmps/email/EmailNevigation.jsx';
+import { EmailNevigationUp } from '../cmps/email/EmailNevigationUp.jsx';
+import { EmailNevigationSide } from '../cmps/email/EmailNevigationSide.jsx';
 import { eventBus } from "../services/eventBusService.js";
 
 
@@ -63,7 +64,8 @@ export default class EmailPage extends React.Component {
         return (
 
             <main>
-                {/* {<EmailNevigation />} */}
+                {<EmailNevigationUp />}
+                {<EmailNevigationSide />}
                 {emailsToShow && <EmailStatus />}
                 
                 {selectedEmail && <EmailDetails selectedEmail={selectedEmail} />}
