@@ -46,11 +46,11 @@ export default class NoteText extends React.Component {
     const { isPinned } = this.state.note;
     if (isPinned) {
       return {
-        backgroundImage: "url('../assets/img/pin-black.png')",
+        backgroundImage: "url('./assets/img/pin-black.png')",
       };
     }
     return {
-      backgroundImage: "url('../assets/img/pin-gray.png')",
+      backgroundImage: "url('./assets/img/pin-gray.png')",
     };
   };
 
@@ -58,11 +58,11 @@ export default class NoteText extends React.Component {
     const { isPaletteShown } = this.state;
     if (isPaletteShown) {
       return {
-        backgroundImage: "url('../assets/img/palette-gray.png')",
+        backgroundImage: "url('./assets/img/palette-gray.png')",
       };
     }
     return {
-      backgroundImage: "url('../assets/img/palette-black.png')",
+      backgroundImage: "url('./assets/img/palette-black.png')",
     };
   };
 
