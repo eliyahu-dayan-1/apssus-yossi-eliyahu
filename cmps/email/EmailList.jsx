@@ -3,7 +3,7 @@ import { EmailPreview } from './EmailPreview.jsx'
 
 export function EmailList(props) {
 
-    
+
     console.log(props.emails)
     return (
         <div className="emails-preview flex column">

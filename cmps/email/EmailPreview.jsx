@@ -1,7 +1,7 @@
 const { Link } = ReactRouterDOM
 
 export function EmailPreview(props) {
-    const { email } = props
+    const { email, onSelectEmail } = props
 
     function convertTimeStamp() {
         var date = new Date(email.sentAt);
@@ -23,9 +23,8 @@ export function EmailPreview(props) {
 
         return `${day}/${Month}/${year} ${clock}`
     }
-    console.log(email)
 
-    return (<Link className="email-preview further-details flex space-between" to={`/email/${email.id}`} >
+    return (<Link className="email-preview further-details flex space-between" onClick = {() => onSelectEmail(email.id)} >
         <div className="choose"></div>
         <div className="star">*</div>
         <div className="bookmark">^</div>

@@ -1,8 +1,10 @@
 export class EmailStatus extends React.Component {
 
-  render() {
+
+
+    render() {
         return (
-            
+
             <main>
                 <h2>EmailStatus</h2>
             </main>

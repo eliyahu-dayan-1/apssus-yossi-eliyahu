@@ -16,16 +16,31 @@ function _getGMails() {
 }
 
 
-function query(filterBy = undefined) {
+function query(searchBy = undefined, filtersBy = undefined, orderBy = {category: 'sentAt', direction: true}) {
     var mails = gMails
-    if (filterBy) {
-        var { name, maxPrice, minPrice } = filterBy
-        maxPrice = maxPrice ? maxPrice : Infinity
-        minPrice = minPrice ? minPrice : 0
-        mails = gMails.filter(book => book.title.includes(name)
-            && (book.listPrice.amount < maxPrice)
-            && book.listPrice.amount > minPrice)
+    if (searchBy, filtersBy) {
+        mails = gMails.filter(mail => {
+            return filtersBy.every(filter => mail[filter].toLowerCase().includes(searchBy))
+        })
     }
+
+    if (orderBy) {
+        const orderDirection = orderBy.direction
+        mails = mails.sort((a, b) => {
+            const mailA = a[orderBy.category].toString().toLowerCase();
+            const mailB = b[orderBy.category].toString().toLowerCase();
+
+            if (mailA > mailB) {
+                return (orderDirection) ? 1 : -1;
+            }
+            if (mailA < mailB) {
+                return (orderDirection) ? -1 : 1;
+            }
+            return 0;
+        });
+
+    }
+    
     return Promise.resolve(mails);
 }
 
@@ -48,21 +63,21 @@ const gDefaultBooks = [
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133930594
+        sentAt: 1551133333333
     },
     {
         id: 2,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133930594
+        sentAt: 1551133000000
     },
     {
         id: 3,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133930594
+        sentAt: 1551133222222
     }
 ];
 

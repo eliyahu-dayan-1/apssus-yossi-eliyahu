@@ -1,10 +1,13 @@
-const { Link } = ReactRouterDOM;
+const Router = ReactRouterDOM.HashRouter;
+const { Route, Switch, Link } = ReactRouterDOM;
+const history = History.createBrowserHistory();
 
 
 import { emailService } from '../services/emailService.js';
 import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailStatus } from '../cmps/email/EmailStatus.jsx';
+import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
 import { eventBus } from "../services/eventBusService.js";
 
 
@@ -13,14 +16,18 @@ export default class EmailPage extends React.Component {
     state = {
         emailsToShow: null,
         selectedEmail: null,
-        filterBy: null,
+        searchBy: '',
+        searchValue: '',
     }
 
 
     componentDidMount() {
         this.loadEmails()
-        eventBus.on('show-msg', (msg) => console.log(msg))
+        eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails())
+        )
+    }
 
+    componentDidUpdate() {
     }
 
     onSetFilter = (filterBy) => {
@@ -28,7 +35,8 @@ export default class EmailPage extends React.Component {
     }
 
     onSelectEmail = (selectedEmail) => {
-        this.setState({ selectedEmail: selectedEmail })
+        this.setState({ selectedEmail }, () => this.props.history.push(`/email/${selectedEmail}`))
+   
     }
 
     onUnSelectEmail = () => {
@@ -40,7 +48,7 @@ export default class EmailPage extends React.Component {
     }
 
     loadEmails() {
-        emailService.query(this.state.filterBy)
+        emailService.query(this.state.searchValue, this.state.searchBy)
             .then(emailsToShow => {
                 this.setState({ emailsToShow }, () => console.log(this.state.emailsToShow))
             })
@@ -49,13 +57,14 @@ export default class EmailPage extends React.Component {
 
     render() {
 
-        const { emailsToShow, selectedEmail , filterBy } = this.state
+        const { emailsToShow, selectedEmail} = this.state
 
 
         return (
 
             <main>
-                {selectedEmail && <EmailStatus />}
+                {emailsToShow && <EmailStatus />}
+                {selectedEmail && <EmailDetails />}
                 {!selectedEmail && emailsToShow && <EmailList onSelectEmail={this.onSelectEmail} emails={emailsToShow} />}
             </main>
         )

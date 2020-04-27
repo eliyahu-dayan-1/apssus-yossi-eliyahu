@@ -3,9 +3,10 @@ import { eventBus } from "../../services/eventBusService.js";
 export class EmailFilter extends React.Component {
 
     state = {
-        searchBy: '', 
+        searchBy: [], 
         searchValue: '',
     }
+    
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
@@ -14,14 +15,15 @@ export class EmailFilter extends React.Component {
         )}
 
     onSearch = (ev) => {
-        ev.preventDefault()
-        eventBus.emit('show-msg', this.state)
+        ev.preventDefault();
+        eventBus.emit('show-msg', this.state);
+
     }
 
     onSelectSearchCategory = (ev) => {
         const userChoose = ev.target.value;
         this.setState(prevState => (
-            {searchBy: userChoose }
+            {searchBy: [/* ...prevState.searchBy, */ userChoose]  }
         ), () => console.log(this.state.searchBy));
     }
 
@@ -37,7 +39,6 @@ export class EmailFilter extends React.Component {
                     <option value="subject">Subject</option>
                     <option value="body">Body</option>
                     <option value="from">From</option>
-                    <option value="audi">Audi</option>
                 </select>
             </React.Fragment>
         )
