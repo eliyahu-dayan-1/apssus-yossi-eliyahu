@@ -11,14 +11,16 @@
 
 .add-note-section {
   width: 100%;
-  height: 3rem;
+  min-height: 3rem;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .add-note-input {
-  height: 100%;
+  min-height: 3rem;
+  height: auto;
   width: 20%;
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
@@ -27,11 +29,19 @@
   box-shadow:
   0 1px 2px 0 rgba(60, 64, 67, 0.302),
   0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .add-note-input:active,
 .add-note-input:focus {
   outline: none;
+}
+
+.add-note-input[placeholder]:empty::before {
+  content: attr(placeholder);
+  color: #555;
 }
 
 .notes-section-header {
@@ -56,8 +66,8 @@
 }
 
 .note {
-  width: calc((100vw - 5rem) / 4);
-  min-width: calc((100vw - 5rem) / 4);
+  width: calc((100vw - 6rem) / 4);
+  min-width: calc((100vw - 6rem) / 4);
   height: auto;
   padding: 1rem;
   margin-block-end: 1rem;

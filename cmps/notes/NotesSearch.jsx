@@ -21,7 +21,13 @@ export default class NotesSearch extends React.Component {
   render() {
     const { searchStr } = this.state.filter;
     return (
-      <input type="text" name="searchStr" value={ searchStr } className="search-notes-input" onChange={ this.handleChange } autoFocus />
+      <input
+        type="text"
+        name="searchStr"
+        value={ searchStr }
+        className="search-notes-input"
+        onChange={ this.handleChange }
+        placeholder="Search" />
     );
   }
 }

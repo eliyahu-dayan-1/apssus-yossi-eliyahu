@@ -32,12 +32,13 @@ export default class NotesPage extends React.Component {
   }
 
   render() {
-    const { notes } = this.state;
+    const { notes, filter } = this.state;
+    const { searchTxt } = filter;
     return (
       <main className="notes-page-container">
-        <AddNoteSection />
-        <PinnedNotesSection notes={ notes } />
-        <OtherNotesSection notes={ notes } />
+        <AddNoteSection searchTxt={ searchTxt } />
+        <PinnedNotesSection notes={ notes } searchTxt={ searchTxt } />
+        <OtherNotesSection notes={ notes } searchTxt={ searchTxt } />
       </main>
     );
   }
