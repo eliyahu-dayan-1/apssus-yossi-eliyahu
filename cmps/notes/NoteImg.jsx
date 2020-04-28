@@ -54,7 +54,10 @@ export default class NoteImg extends React.Component {
         note: {
           ...prevState.note,
           lastModified: Date.now(),
-          info: { title },
+          info: {
+            ...prevState.note.info,
+            title,
+          },
         },
       }), () => {
       noteService.save(this.state.note)
