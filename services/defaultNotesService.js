@@ -140,8 +140,8 @@ export default () => [
       backgroundColor: 'lavender',
     },
     info: {
-      url: '../../img/meme.jpg',
-      title: 'Me playing Mi',
+      url: './assets/img/meme.jpg',
+      title: 'Some programmers joke',
     },
     lastModified: 1588064808892,
   },
