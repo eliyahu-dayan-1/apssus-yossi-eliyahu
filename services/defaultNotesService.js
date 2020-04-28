@@ -1,19 +1,6 @@
 /* eslint-disable max-len */
 export default () => [
   {
-    id: 'z2gf2eef25sri',
-    type: 'NoteImg',
-    isPinned: true,
-    style: {
-      backgroundColor: 'lavender',
-    },
-    info: {
-      url: './assets/img/meme.jpg',
-      title: 'Some programmers joke',
-    },
-    lastModified: 1588999999999,
-  },
-  {
     id: 'T_jj54If45Hii',
     type: 'NoteText',
     isPinned: true,
@@ -164,5 +151,16 @@ export default () => [
         },
       ],
     },
+  },
+  {
+    id: 'zj4518gGagHW',
+    type: 'NoteImg',
+    isPinned: true,
+    color: 'white',
+    info: {
+      title: 'Some programmers joke',
+      url: './assets/img/meme.jpg',
+    },
+    lastModified: 1588092837452,
   },
 ];
