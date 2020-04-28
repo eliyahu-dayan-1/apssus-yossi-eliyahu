@@ -8,6 +8,8 @@ export function EmailPreview(props) {
         return <img src={`../../assets/img/icons/${iconName}`} alt="iconName" />
     }
 
+    
+
     function convertTimeStamp() {
         var date = new Date(email.sentAt);
 

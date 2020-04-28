@@ -1,4 +1,8 @@
 // eslint-disable-next-line import/prefer-default-export
+export const utilService = {
+  makeId
+}
+
 export function makeId(length = 3) {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

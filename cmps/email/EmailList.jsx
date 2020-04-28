@@ -1,7 +1,3 @@
-const Router = ReactRouterDOM.HashRouter;
-const { Route, Switch, Link } = ReactRouterDOM;
-const history = History.createBrowserHistory();
-
 import { EmailPreview } from './EmailPreview.jsx'
 import { Loading } from '../Loading.jsx'
 import { emailService } from '../../services/emailService.js';
@@ -15,37 +11,45 @@ export class EmailList extends React.Component {
 
     state = {
         emails: null,
-        searchCategory: null,
+        previewCategory: null,
         searchValue: null,
         selectedEmail: null,
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.previewType)
-        this.loadEmails()
+        const previewCategory = this.props.match.params.previewCategory
+        console.log(previewCategory)
+        this.setState({ previewCategory: [`is${this.capitalize(previewCategory)}`] }, () => {
+            console.log(this.state.previewCategory)
+            this.loadEmails()
+        })
+
         eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails())
         )
     }
 
+    capitalize = (s) => {
+        return s[0].toUpperCase() + s.slice(1);
+    }
+
     loadEmails() {
-        emailService.query(this.state.searchValue, this.state.searchCategory)
+        console.log(this.state)
+        emailService.query(this.state.searchValue, this.state.previewCategory)
             .then(emails => {
                 this.setState({ emails }, () => console.log(this.state.emails))
             })
+            .catch(err => console.log(err))
     }
 
-    onSetFilter = (searchCategory) => {
-        this.setState({ searchCategory }, () => this.loadEmails())
+    onSetFilter = (previewCategory) => {
+        this.setState({ previewCategory: [previewCategory] }, () => this.loadEmails())
     }
 
     onSelectEmail = (selectedEmail) => {
-        this.setState({ selectedEmail }, () => this.props.history.push(`/email/emails/${selectedEmail}`))
+        // window.location.href += /${selectedEmail}
+        this.setState({ selectedEmail }, () => this.props.history.push(`${this.state.previewCategory}/${selectedEmail}`))
+        eventBus.emit('url-change', '')
     }
-
-    // onUnSelectEmail = () => {
-    //     this.setState({ selectedEmail: null })
-    // }
-
 
     componentDidUpdate() {
     }
