@@ -26,7 +26,6 @@ export default class NoteText extends React.Component {
           lastModified: Date.now(),
         },
       }), () => {
-      // console.log(this.state.note);
       noteService.save(this.state.note);
       eventBus.emit('search-notes', this.props.searchTxt);
     });
@@ -40,7 +39,14 @@ export default class NoteText extends React.Component {
   handleChange = ({ target }) => {
     const txt = target.innerText;
     this.setState(prevState =>
-      ({ ...prevState, note: { ...prevState.note, info: { txt } } }), () => {
+      ({
+        ...prevState,
+        note: {
+          ...prevState.note,
+          lastModified: Date.now(),
+          info: { txt },
+        },
+      }), () => {
       noteService.save(this.state.note);
     });
   }
