@@ -1,7 +1,7 @@
 import noteService from '../../services/noteService.js';
 import { eventBus } from '../../services/eventBusService.js';
 
-export default class AddNoteSection extends React.Component {
+export default class NoteAdd extends React.Component {
   state = {
     type: 'NodeText',
     txt: null,

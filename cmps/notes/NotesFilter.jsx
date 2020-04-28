@@ -1,6 +1,6 @@
 import { eventBus } from '../../services/eventBusService.js';
 
-export default class NotesSearch extends React.Component {
+export default class NotesFilter extends React.Component {
   state = {
     filter: {
       searchStr: '',

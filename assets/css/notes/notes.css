@@ -50,13 +50,11 @@
   margin-block-end: 1rem;
 }
 
-.pinned-notes-section,
-.other-notes-section {
+.notes-section {
   width: 100%;
 }
 
-.pinned-notes-container,
-.other-notes-container {
+.notes-container {
   width: 100%;
   display: flex;
   flex-flow: row wrap;

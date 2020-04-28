@@ -2,7 +2,7 @@ import NoteText from './NoteText.jsx';
 import NoteImg from './NoteImg.jsx';
 import NoteTodos from './NoteTodos.jsx';
 
-const Note = (props) => {
+const NoteDynamicCmp = (props) => {
   const { type } = props.note;
   // console.log(props);
   // console.log(type);
@@ -18,4 +18,4 @@ const Note = (props) => {
   }
 };
 
-export default Note;
+export default NoteDynamicCmp;
