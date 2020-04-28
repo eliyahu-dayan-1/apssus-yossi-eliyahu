@@ -33,11 +33,12 @@ export default class NotesPage extends React.Component {
   render() {
     const { notes, filter } = this.state;
     const { searchTxt } = filter;
+    const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
     return (
       <main className="notes-page-container">
         <NoteAdd searchTxt={ searchTxt } />
-        <NotesList notes={ notes.filter(note => note.isPinned) } searchTxt={ searchTxt } />
-        <NotesList notes={ notes.filter(note => !note.isPinned) } searchTxt={ searchTxt } />
+        <NotesList notes={ sortedNotes.filter(note => note.isPinned) } searchTxt={ searchTxt } headingTxt="Pinned" />
+        <NotesList notes={ sortedNotes.filter(note => !note.isPinned) } searchTxt={ searchTxt } headingTxt="Others" />
       </main>
     );
   }

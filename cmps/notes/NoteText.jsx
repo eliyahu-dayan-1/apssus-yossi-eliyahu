@@ -18,7 +18,15 @@ export default class NoteText extends React.Component {
 
   togglePin = () => {
     this.setState(prevState =>
-      ({ ...prevState, note: { ...prevState.note, isPinned: !prevState.note.isPinned } }), () => {
+      ({
+        ...prevState,
+        note: {
+          ...prevState.note,
+          isPinned: !prevState.note.isPinned,
+          lastModified: Date.now(),
+        },
+      }), () => {
+      // console.log(this.state.note);
       noteService.save(this.state.note);
       eventBus.emit('search-notes', this.props.searchTxt);
     });
