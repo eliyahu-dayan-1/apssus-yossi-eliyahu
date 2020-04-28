@@ -45,7 +45,8 @@
 }
 
 .set-type-text-button,
-.set-type-image-button {
+.set-type-image-button,
+.set-type-video-button {
   width: 1rem;
   height: 1rem;
   margin-inline-start: 0.25rem;
@@ -59,6 +60,10 @@
 
 .set-type-image-button {
   background-image: url(../../img/image.png);
+}
+
+.set-type-video-button {
+  background-image: url(../../img/video.png);
 }
 
 .notes-section-header {

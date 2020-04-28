@@ -7,6 +7,7 @@ export default {
   save,
   createTextNote,
   createImageNote,
+  createVideoNote,
   remove,
 };
 
@@ -40,6 +41,23 @@ function createImageNote(url) {
   const newNote = {
     id: makeId(12),
     type: 'NoteImg',
+    isPinned: false,
+    color: 'white',
+    info: {
+      title: 'Click to edit title',
+      url,
+    },
+    lastModified: Date.now(),
+  };
+  gNotes.push(newNote);
+  storageService.store(STORAGE_KEY, gNotes);
+  return Promise.resolve(newNote);
+}
+
+function createVideoNote(url) {
+  const newNote = {
+    id: makeId(12),
+    type: 'NoteVideo',
     isPinned: false,
     color: 'white',
     info: {

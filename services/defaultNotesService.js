@@ -163,4 +163,15 @@ export default () => [
     },
     lastModified: 1588092837452,
   },
+  {
+    id: '6pmKAkPhcjK8',
+    type: 'NoteVideo',
+    isPinned: false,
+    color: 'white',
+    info: {
+      title: 'Coding Academy',
+      url: 'https://youtu.be/F2aSHWyVTBw',
+    },
+    lastModified: 1588103284219,
+  },
 ];
