@@ -17,19 +17,24 @@ export class EmailList extends React.Component {
     }
 
     componentDidMount() {
-        const previewCategory = this.props.match.params.previewCategory
-        console.log(previewCategory)
-        this.setState({ previewCategory: [`is${this.capitalize(previewCategory)}`] }, () => {
-            console.log(this.state.previewCategory)
-            this.loadEmails()
-        })
+        this.setPreviewCategory()
+        eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails()))
 
-        eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails())
-        )
+        eventBus.on('url-change', () => this.setPreviewCategory())
     }
 
-    capitalize = (s) => {
-        return s[0].toUpperCase() + s.slice(1);
+    componentDidUpdate() {
+    }
+
+    setPreviewCategory = () => {        
+        const previewCategory = this.props.match.params.previewCategory
+        this.setState({ previewCategory: [`is${this.capitalize(previewCategory)}`]}, () => {
+            this.loadEmails()
+        })
+    }
+
+    capitalize = (str) => {
+        return str[0].toUpperCase() + str.slice(1);
     }
 
     loadEmails() {
@@ -38,7 +43,7 @@ export class EmailList extends React.Component {
             .then(emails => {
                 this.setState({ emails }, () => console.log(this.state.emails))
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log('cant load emails'))
     }
 
     onSetFilter = (previewCategory) => {
@@ -46,20 +51,18 @@ export class EmailList extends React.Component {
     }
 
     onSelectEmail = (selectedEmail) => {
-        // window.location.href += /${selectedEmail}
         this.setState({ selectedEmail }, () => this.props.history.push(`${this.state.previewCategory}/${selectedEmail}`))
-        eventBus.emit('url-change', '')
+        eventBus.emit('url-change', "")
     }
 
-    componentDidUpdate() {
-    }
+ 
 
     render() {
         const { emails } = this.state
         const { onSelectEmail } = this
 
         if (!emails) return <Loading />
-        console.log(emails)
+
         return (
             <div className="email-list flex column grow-1">
                 <EmailNavBarUp />

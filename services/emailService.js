@@ -16,8 +16,13 @@ _getGMails()
 function _getGMails() {
     const gDefaultEmails = [
         _createNewEmail({
+            from: 'dayan0544@gmail.com',
+            to: 'jon@gmail.com',
+            mailedBy: 'eliyahu dayan',
             subject: 'lorem',
-            body: 'Pick up!',
+            body: 'Welcome to Academia.edu! 46,220,726 academics have joined the Academia.edu platform, and they have uploaded 16,918,538 papers in total.',
+            isFrom: false, 
+            isTo: true,
             isRead: false,
             sentAt: 1551133333333,
             isReaded: false,
@@ -25,8 +30,13 @@ function _getGMails() {
             isBookmarked: false,
         }),
         _createNewEmail({
+            from: 'dayan0544@gmail.com',
+            to: 'jon@gmail.com',
+            mailedBy: 'eliyahu dayan',
             subject: 'Wassap?',
-            body: 'Pick up!',
+            body: 'Welcome to Academia.edu! 46,220,726 academics have joined the Academia.edu platform, and they have uploaded 16,918,538 papers in total.!',
+            isFrom: false, 
+            isTo: true,
             isRead: false,
             sentAt: 1551133000000,
             isReaded: true,
@@ -35,8 +45,13 @@ function _getGMails() {
             isStared: false
         }),
         _createNewEmail({
+            from: 'dayan0544@gmail.com',
+            to: 'jon@gmail.com',
+            mailedBy:	'eliyahu dayan',
             subject: 'Wassap?',
-            body: 'Pick up!',
+            body: 'Artificial Intelligence has revolutionized many industries in the past dec‍ade, and healthcare is no exception. In fact, over half of healthcare professionals expect to use artificial intelligence in the ne‍xt 5‍ y‍ears.!',
+            isFrom: true, 
+            isTo: false,
             isRead: false,
             sentAt: 1551133222222,
             isReaded: false,
@@ -45,8 +60,6 @@ function _getGMails() {
             isStared: true
         })
     ];
-
-
 
     gEmails = storageService.load(MAILS_KEY, gDefaultEmails);
     storageService.store(MAILS_KEY, gEmails);

@@ -1,8 +1,8 @@
-export function LongTxt(props) {
-    const {howMuchLong, text} = props
+export function LongText(props) {
+
+    const {howMuchLong, text, className} = props
+
     return (
-        <article >
-            <p className="long-txt"><span>description:</span> {text.substring(0, howMuchLong)}</p>
-        </article>
+            <p className={className}>{text.substring(0, howMuchLong) + '...'}</p>
     )
 }

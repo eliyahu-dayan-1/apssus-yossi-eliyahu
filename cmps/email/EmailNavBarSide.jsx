@@ -7,11 +7,14 @@ export class EmailNavBarSide extends  React.Component {
 
     changeUrl = (value) => {
         this.props.history.push(`/${value}`)
+        eventBus.emit('url-change', '')
     }
 
     addParam = (label, value) => {
-       const currUrl = window.location.href;
-       this.props.location.push(`${this.props.location.pathname}?${label}=${value}`)
+       const {pathname} =  this.props.history.location
+       console.log(this.props.history.location);
+       
+       this.props.history.push(`${pathname}?${label}=${value}`)
        eventBus.emit('url-change', '')
     }
 

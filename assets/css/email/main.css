@@ -52,20 +52,34 @@
 
 .email-preview{
     width: 100%;
-    padding: 20px 10px;
+    padding: 20px 30px;
     border-bottom: 1px solid rgba(214, 213, 213, 0.8);;
 }
 
-.email-preview:not(:last-child){
-    border-bottom: ;
+.email-preview > *:not(:last-child){
+    margin-right: 20px;
+}
+
+.email-preview .option > *:not(:last-child){
+    margin-right: 20px;    
 }
 
 .icon > img{
-    width: 10px;
+    width: 15px;
+    transition: .5s;
+}
+
+.icon > img:hover{
+    width: 17px;
 }
 
 .email-details .return{
-    content:url(../../img/icons/return.png);
+    padding: 10px 30px;
+    background-color: grey;
+    width: min-content;
+}
+
+.email-details .return img{
     width: 30px;
     cursor: pointer;
 }
