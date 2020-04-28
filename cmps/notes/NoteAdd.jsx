@@ -3,45 +3,64 @@ import { eventBus } from '../../services/eventBusService.js';
 
 export default class NoteAdd extends React.Component {
   state = {
-    type: 'NodeText',
+    type: 'NoteText',
     txt: null,
   }
 
-  setTypeText = () => {
-    this.setState(prevState => ({ ...prevState, type: 'NodeText' }));
+  setType = ({ target }) => {
+    const { name } = target;
+    this.setState(prevState => ({ ...prevState, type: name }));
   }
 
   createNote = (e) => {
     e.preventDefault();
+    const { type } = this.state;
     const txt = e.target.innerText;
+    if (txt === '') return;
     this.setState(prevState =>
-      ({ ...prevState, txt: null }));
-    noteService.createTextNote(txt)
-      .then(() => {
-        eventBus.emit('search-notes', this.props.searchTxt);
-        this.setState(prevState =>
-          ({ ...prevState, txt: '' }));
-      });
+      ({ ...prevState, txt: null }), () => {
+      if (type === 'NoteText') {
+        noteService.createTextNote(txt)
+          .then(() => {
+            eventBus.emit('search-notes', this.props.searchTxt);
+            this.setState(prevState =>
+              ({ ...prevState, txt: '' }));
+          });
+      }
+      if (type === 'NoteImg') {
+        noteService.createImageNote(txt)
+          .then(() => {
+            eventBus.emit('search-notes', this.props.searchTxt);
+            this.setState(prevState =>
+              ({ ...prevState, txt: '' }));
+          });
+      }
+    });
   }
 
   render() {
-    const { txt } = this.state;
+    const { txt, type } = this.state;
+    let placeholderText = '';
+    if (type === 'NoteText') {
+      placeholderText = 'Take a note...';
+    }
+    if (type === 'NoteImg') {
+      placeholderText = 'Enter image URL...';
+    }
     return (
       <section className="add-note-section">
-        {/* <input type="text" className="add-note-input" placeholder="Take a note..."/> */}
         <div
           className="add-note-input"
           contentEditable={ true }
           suppressContentEditableWarning={ true }
           onBlur={ this.createNote }
-          placeholder="Take a note...">
+          placeholder={ placeholderText }>
           {txt}
         </div>
-        {/* <button
-        className="set-type-text-button"
-        onClick={ this.setTypeText }>
-        Text Note
-        </button> */}
+        <button name="NoteText" className="set-type-text-button" onClick={ this.setType }>
+        </button>
+        <button name="NoteImg" className="set-type-image-button" onClick={ this.setType }>
+        </button>
       </section>
     );
   }

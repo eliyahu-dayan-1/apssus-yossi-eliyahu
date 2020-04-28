@@ -6,6 +6,7 @@ export default {
   query,
   save,
   createTextNote,
+  createImageNote,
   remove,
 };
 
@@ -28,6 +29,24 @@ function createTextNote(txt) {
     info: {
       txt,
     },
+    lastModified: Date.now(),
+  };
+  gNotes.push(newNote);
+  storageService.store(STORAGE_KEY, gNotes);
+  return Promise.resolve(newNote);
+}
+
+function createImageNote(url) {
+  const newNote = {
+    id: makeId(12),
+    type: 'NoteImg',
+    isPinned: false,
+    color: 'white',
+    info: {
+      title: 'Click to edit title',
+      url,
+    },
+    lastModified: Date.now(),
   };
   gNotes.push(newNote);
   storageService.store(STORAGE_KEY, gNotes);

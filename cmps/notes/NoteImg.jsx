@@ -116,6 +116,22 @@ export default class NoteImg extends React.Component {
     });
   }
 
+  onError = () => {
+    this.setState(prevState =>
+      ({
+        ...prevState,
+        note: {
+          ...prevState.note,
+          info: {
+            ...prevState.note.info,
+            url: './assets/img/image-not-found.png',
+          },
+        },
+      }), () => {
+      noteService.save(this.state.note);
+    });
+  }
+
   render() {
     const { note, isPaletteShown } = this.state;
     const { info, style } = note;
@@ -129,7 +145,7 @@ export default class NoteImg extends React.Component {
           onBlur={ this.handleChange }>
           <h3 className="note-title">{title}</h3>
         </section>
-        <img className="note-image" src={ url } alt={ title } />
+        <img className="note-image" src={ url } alt="Image" onError={ this.onError } />
         <section className="note-controls-section">
           <button className="note-action-button toggle-pin-button" onClick={ this.togglePin } style={ this.pinButtonStyle() }></button>
           <button className="note-action-button remove-note-button" onClick={ this.removeNote }></button>
