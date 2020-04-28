@@ -13,6 +13,7 @@ export class EmailDetails extends React.Component {
 
     componentDidMount() {
         const { emailId } = this.props.match.params
+        console.log('in details')
         emailService.getById(parseInt(emailId))
             .then(email => this.setState({ email }, () => console.log(this.state.email))
             )

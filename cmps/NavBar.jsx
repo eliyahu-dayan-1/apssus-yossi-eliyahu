@@ -21,7 +21,7 @@ export default function NavBar() {
             <NavLink exact to="/">Home</NavLink>
             <NavLink exact to="/notes">Note</NavLink>
             <NavLink exact to="/book">Book</NavLink>
-            <NavLink exact to="/email/emails">Email</NavLink>
+            <NavLink exact to="/inbox">Email</NavLink>
         </div>
       </header>
       </nav>
