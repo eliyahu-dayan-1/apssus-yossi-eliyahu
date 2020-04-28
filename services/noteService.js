@@ -6,6 +6,8 @@ export default {
   query,
   save,
   createTextNote,
+  createImageNote,
+  createVideoNote,
   remove,
 };
 
@@ -28,6 +30,41 @@ function createTextNote(txt) {
     info: {
       txt,
     },
+    lastModified: Date.now(),
+  };
+  gNotes.push(newNote);
+  storageService.store(STORAGE_KEY, gNotes);
+  return Promise.resolve(newNote);
+}
+
+function createImageNote(url) {
+  const newNote = {
+    id: makeId(12),
+    type: 'NoteImg',
+    isPinned: false,
+    color: 'white',
+    info: {
+      title: 'Click to edit title',
+      url,
+    },
+    lastModified: Date.now(),
+  };
+  gNotes.push(newNote);
+  storageService.store(STORAGE_KEY, gNotes);
+  return Promise.resolve(newNote);
+}
+
+function createVideoNote(url) {
+  const newNote = {
+    id: makeId(12),
+    type: 'NoteVideo',
+    isPinned: false,
+    color: 'white',
+    info: {
+      title: 'Click to edit title',
+      url,
+    },
+    lastModified: Date.now(),
   };
   gNotes.push(newNote);
   storageService.store(STORAGE_KEY, gNotes);
@@ -46,12 +83,15 @@ function query(searchStr) {
   let notes = gNotes;
   notes = notes.filter((note) => {
     if (note.info.txt) {
-      return note.info.txt.includes(searchStr);
+      return note.info.txt.toLowerCase().includes(searchStr.toLowerCase());
+    }
+    if (note.info.title) {
+      return note.info.title.toLowerCase().includes(searchStr.toLowerCase());
     }
     if (note.info.todos) {
       let match = false;
       note.info.todos.forEach((todo) => {
-        if (todo.txt.includes(searchStr)) {
+        if (todo.txt.toLowerCase().includes(searchStr.toLowerCase())) {
           match = true;
         }
       });

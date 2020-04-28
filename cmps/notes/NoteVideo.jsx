@@ -2,7 +2,7 @@ import noteService from '../../services/noteService.js';
 import { eventBus } from '../../services/eventBusService.js';
 import Palette from '../notes/Palette.jsx';
 
-export default class NoteText extends React.Component {
+export default class NoteVideo extends React.Component {
   state = {
     isPaletteShown: false,
     note: {},
@@ -47,14 +47,17 @@ export default class NoteText extends React.Component {
   }
 
   handleChange = ({ target }) => {
-    const txt = target.innerText;
+    const title = target.innerText;
     this.setState(prevState =>
       ({
         ...prevState,
         note: {
           ...prevState.note,
           lastModified: Date.now(),
-          info: { txt },
+          info: {
+            ...prevState.note.info,
+            title,
+          },
         },
       }), () => {
       noteService.save(this.state.note)
@@ -116,16 +119,26 @@ export default class NoteText extends React.Component {
   render() {
     const { note, isPaletteShown } = this.state;
     const { info, style } = note;
-    const { txt } = info || this.props.note.info;
+    const { title } = info || this.props.note.info;
+    let { url } = info || this.props.note.info;
+    if (url.includes('youtu.be/')) {
+      url = url.slice(url.lastIndexOf('/') + 1);
+    }
+    if (url.includes('v=')) {
+      url = url.slice(url.lastIndexOf('v=') + 2);
+    }
     return (
-      <article className="note text-note" style={ style }>
+      <article className="note video-note" style={ style }>
         <section
-          className="note-content-section"
+          className="note-title-section"
           contentEditable={ true }
           suppressContentEditableWarning={ true }
           onBlur={ this.handleChange }>
-          {txt}
+          <h3 className="note-title">{title}</h3>
         </section>
+        <iframe width="100%" height="auto" allowFullScreen
+          src={ `https://www.youtube.com/embed/${url}` }>
+        </iframe>
         <section className="note-controls-section">
           <button className="note-action-button toggle-pin-button" onClick={ this.togglePin } style={ this.pinButtonStyle() }></button>
           <button className="note-action-button remove-note-button" onClick={ this.removeNote }></button>
