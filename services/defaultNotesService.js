@@ -135,13 +135,15 @@ export default () => [
   {
     id: 'z2gf2eef25sri',
     type: 'NoteImg',
+    isPinned: true,
     style: {
       backgroundColor: 'lavender',
     },
     info: {
-      url: 'http://some-img/me',
+      url: '../../img/meme.jpg',
       title: 'Me playing Mi',
     },
+    lastModified: 1588064808892,
   },
   {
     id: 'psa4_nnytre11',

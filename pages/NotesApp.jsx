@@ -21,6 +21,7 @@ export default class NotesPage extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribeFromEventSearchNotes();
+    this.unsubscribeFromEventShowMessage();
   }
 
   loadNotes() {

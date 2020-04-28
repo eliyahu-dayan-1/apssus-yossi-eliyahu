@@ -127,9 +127,9 @@ export default class NoteText extends React.Component {
           {txt}
         </section>
         <section className="note-controls-section">
-          <button className="toggle-pin-button" onClick={ this.togglePin } style={ this.pinButtonStyle() }></button>
-          <button className="remove-note-button" onClick={ this.removeNote }></button>
-          <button className="toggle-palette-button" onClick={ this.togglePalette } style={ this.paletteButtonStyle() }></button>
+          <button className="note-action-button toggle-pin-button" onClick={ this.togglePin } style={ this.pinButtonStyle() }></button>
+          <button className="note-action-button remove-note-button" onClick={ this.removeNote }></button>
+          <button className="note-action-button toggle-palette-button" onClick={ this.togglePalette } style={ this.paletteButtonStyle() }></button>
         </section>
         { isPaletteShown && <Palette changeColor={ this.changeColor } /> }
       </article>

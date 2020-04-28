@@ -45,9 +45,13 @@ function query(searchStr) {
   if (!gNotes) gNotes = storageService.load(STORAGE_KEY, gDefaultNotes);
   let notes = gNotes;
   notes = notes.filter((note) => {
+    if (note.type === 'NoteImg') return true;
     if (note.info.txt) {
       return note.info.txt.includes(searchStr);
     }
+    // if (note.info.title) {
+    //   return note.info.title.includes(searchStr);
+    // }
     if (note.info.todos) {
       let match = false;
       note.info.todos.forEach((todo) => {
