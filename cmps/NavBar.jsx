@@ -1,5 +1,5 @@
-import UserMsg from './UserMsg.jsx';
-import NotesSearch from '../cmps/notes/NotesSearch.jsx';
+// import UserMsg from './UserMsg.jsx';
+import NotesFilter from './notes/NotesFilter.jsx';
 import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
@@ -14,7 +14,7 @@ export default function NavBar() {
           <div className="logo"><a href="#">Appsus</a></div>
         </div>
         <Switch className="switch-search flex">
-          <Route component={ NotesSearch } path="/notes" />
+          <Route component={ NotesFilter } path="/notes" />
           <Route component={ EmailFilter } path="/email" />
         </Switch>
         <div className="link-container flex">
@@ -25,6 +25,6 @@ export default function NavBar() {
         </div>
       </header>
       </nav>
-      <UserMsg />
+      {/* <UserMsg /> */}
     </Router >;
 }

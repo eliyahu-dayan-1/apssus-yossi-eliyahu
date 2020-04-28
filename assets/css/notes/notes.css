@@ -50,13 +50,11 @@
   margin-block-end: 1rem;
 }
 
-.pinned-notes-section,
-.other-notes-section {
+.notes-section {
   width: 100%;
 }
 
-.pinned-notes-container,
-.other-notes-container {
+.notes-container {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -144,46 +142,46 @@
   background-color: white;
 }
 
-.red {
+.lightcoral {
   background-color: lightcoral;
 }
 
-.orange {
+.goldenrod {
   background-color: goldenrod;
 }
 
-.yellow {
+.khaki {
   background-color: khaki;
 }
 
-.green {
+.palegreen {
   background-color: palegreen;
 }
 
-.teal {
+.paleturquoise {
   background-color: paleturquoise;
 }
 
-.blue {
+.lightcyan {
   background-color: lightcyan;
 }
 
-.darkblue {
+.lightblue {
   background-color: lightblue;
 }
 
-.purple {
+.plum {
   background-color: plum;
 }
 
-.pink {
+.mistyrose {
   background-color: mistyrose;
 }
 
-.brown {
+.wheat {
   background-color: wheat;
 }
 
-.gray {
+.lavender {
   background-color: lavender;
 }

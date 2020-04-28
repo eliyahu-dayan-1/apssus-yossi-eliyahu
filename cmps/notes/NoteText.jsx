@@ -1,5 +1,6 @@
 import noteService from '../../services/noteService.js';
 import { eventBus } from '../../services/eventBusService.js';
+import Palette from '../notes/Palette.jsx';
 
 export default class NoteText extends React.Component {
   state = {
@@ -18,22 +19,50 @@ export default class NoteText extends React.Component {
 
   togglePin = () => {
     this.setState(prevState =>
-      ({ ...prevState, note: { ...prevState.note, isPinned: !prevState.note.isPinned } }), () => {
-      noteService.save(this.state.note);
-      eventBus.emit('search-notes', this.props.searchTxt);
+      ({
+        ...prevState,
+        note: {
+          ...prevState.note,
+          isPinned: !prevState.note.isPinned,
+          lastModified: Date.now(),
+        },
+      }), () => {
+      const { note } = this.state;
+      noteService.save(note)
+        .then(() => {
+          eventBus.emit('search-notes', this.props.searchTxt);
+          eventBus.emit('show-msg', { txt: note.isPinned ? 'Pinned!' : 'Unpinned!', type: 'success' });
+        })
+        .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
     });
   }
 
   removeNote = () => {
-    noteService.remove(this.state.note.id);
-    eventBus.emit('search-notes', this.props.searchTxt);
+    noteService.remove(this.state.note.id)
+      .then(() => {
+        eventBus.emit('search-notes', this.props.searchTxt);
+        eventBus.emit('show-msg', { txt: 'Note has been successfully deleted!', type: 'success' });
+      })
+      .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
   }
 
   handleChange = ({ target }) => {
     const txt = target.innerText;
     this.setState(prevState =>
-      ({ ...prevState, note: { ...prevState.note, info: { txt } } }), () => {
-      noteService.save(this.state.note);
+      ({
+        ...prevState,
+        note: {
+          ...prevState.note,
+          lastModified: Date.now(),
+          info: { txt },
+        },
+      }), () => {
+      noteService.save(this.state.note)
+        .then(() => {
+          eventBus.emit('search-notes', this.props.searchTxt);
+          eventBus.emit('show-msg', { txt: 'Note has been successfully updated!', type: 'success' });
+        })
+        .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
     });
   }
 
@@ -74,63 +103,22 @@ export default class NoteText extends React.Component {
         isPaletteShown: false,
         note: {
           ...prevState.note,
-          color: name,
+          style: {
+            ...prevState.note.style,
+            backgroundColor: name,
+          },
         },
       }), () => {
       noteService.save(this.state.note);
     });
   }
 
-  noteStyle = () => {
-    const { color } = this.state.note;
-    const style = {};
-    switch (color) {
-      case 'white':
-      default:
-        style.backgroundColor = 'white';
-        break;
-      case 'red':
-        style.backgroundColor = 'lightcoral';
-        break;
-      case 'orange':
-        style.backgroundColor = 'goldenrod';
-        break;
-      case 'yellow':
-        style.backgroundColor = 'khaki';
-        break;
-      case 'green':
-        style.backgroundColor = 'palegreen';
-        break;
-      case 'teal':
-        style.backgroundColor = 'paleturquoise';
-        break;
-      case 'blue':
-        style.backgroundColor = 'lightcyan';
-        break;
-      case 'darkblue':
-        style.backgroundColor = 'lightblue';
-        break;
-      case 'purple':
-        style.backgroundColor = 'plum';
-        break;
-      case 'pink':
-        style.backgroundColor = 'mistyrose';
-        break;
-      case 'brown':
-        style.backgroundColor = 'wheat';
-        break;
-      case 'gray':
-        style.backgroundColor = 'lavender';
-        break;
-    }
-    return style;
-  };
-
   render() {
     const { note, isPaletteShown } = this.state;
-    const { txt } = note.info || this.props.note.info;
+    const { info, style } = note;
+    const { txt } = info || this.props.note.info;
     return (
-      <article className="note text-note" style={ this.noteStyle() }>
+      <article className="note text-note" style={ style }>
         <section
           className="note-content-section"
           contentEditable={ true }
@@ -143,21 +131,7 @@ export default class NoteText extends React.Component {
           <button className="remove-note-button" onClick={ this.removeNote }></button>
           <button className="toggle-palette-button" onClick={ this.togglePalette } style={ this.paletteButtonStyle() }></button>
         </section>
-        { isPaletteShown &&
-          <section className="palette">
-            <button name="white" className="white" onClick={ this.changeColor }></button>
-            <button name="red" className="red" onClick={ this.changeColor }></button>
-            <button name="orange" className="orange" onClick={ this.changeColor }></button>
-            <button name="yellow" className="yellow" onClick={ this.changeColor }></button>
-            <button name="green" className="green" onClick={ this.changeColor }></button>
-            <button name="teal" className="teal" onClick={ this.changeColor }></button>
-            <button name="blue" className="blue" onClick={ this.changeColor }></button>
-            <button name="darkblue" className="darkblue" onClick={ this.changeColor }></button>
-            <button name="purple" className="purple" onClick={ this.changeColor }></button>
-            <button name="pink" className="pink" onClick={ this.changeColor }></button>
-            <button name="brown" className="brown" onClick={ this.changeColor }></button>
-            <button name="gray" className="gray" onClick={ this.changeColor }></button>
-          </section> }
+        { isPaletteShown && <Palette changeColor={ this.changeColor } /> }
       </article>
     );
   }

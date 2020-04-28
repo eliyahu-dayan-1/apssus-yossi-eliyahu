@@ -1,6 +1,5 @@
-import AddNoteSection from '../cmps/notes/AddNoteSection.jsx';
-import PinnedNotesSection from '../cmps/notes/PinnedNotesSection.jsx';
-import OtherNotesSection from '../cmps/notes/OtherNotesSection.jsx';
+import NoteAdd from '../cmps/notes/NoteAdd.jsx';
+import NotesList from '../cmps/notes/NotesList.jsx';
 import noteService from '../services/noteService.js';
 import { eventBus } from '../services/eventBusService.js';
 
@@ -13,13 +12,15 @@ export default class NotesPage extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribeFromEventBus = eventBus.on('search-notes', searchTxt =>
+    this.unsubscribeFromEventSearchNotes = eventBus.on('search-notes', searchTxt =>
+      this.onSetFilter(searchTxt));
+    this.unsubscribeFromEventShowMessage = eventBus.on('show-message', searchTxt =>
       this.onSetFilter(searchTxt));
     this.loadNotes();
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromEventBus();
+    this.unsubscribeFromEventSearchNotes();
   }
 
   loadNotes() {
@@ -34,11 +35,12 @@ export default class NotesPage extends React.Component {
   render() {
     const { notes, filter } = this.state;
     const { searchTxt } = filter;
+    const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
     return (
       <main className="notes-page-container">
-        <AddNoteSection searchTxt={ searchTxt } />
-        <PinnedNotesSection notes={ notes } searchTxt={ searchTxt } />
-        <OtherNotesSection notes={ notes } searchTxt={ searchTxt } />
+        <NoteAdd searchTxt={ searchTxt } />
+        <NotesList notes={ sortedNotes.filter(note => note.isPinned) } searchTxt={ searchTxt } headingTxt="Pinned" />
+        <NotesList notes={ sortedNotes.filter(note => !note.isPinned) } searchTxt={ searchTxt } headingTxt="Others" />
       </main>
     );
   }

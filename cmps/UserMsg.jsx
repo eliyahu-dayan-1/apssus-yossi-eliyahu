@@ -8,7 +8,6 @@ export default class UserMsg extends React.Component {
 
     componentDidMount() {
       this.unsubscribeFromEventBus = eventBus.on('show-msg', (msg) => {
-        // console.log('OK, on it!', msg.txt);
         const delay = 3000;
         this.setState({ msg });
         setTimeout(() => {
@@ -30,9 +29,9 @@ export default class UserMsg extends React.Component {
         const classColor = type === 'success' ? 'green' : 'red';
         return (
           <section className={ `user-msg ${classColor}` }>
-              <button onClick={ () => {
+              <button className="close-msg-button" onClick={ () => {
                   this.setState({ msg: null });
-              } }>x</button>
+              } }>×</button>
               {txt}
           </section>
         );
