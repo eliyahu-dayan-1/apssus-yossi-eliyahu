@@ -74,63 +74,22 @@ export default class NoteText extends React.Component {
         isPaletteShown: false,
         note: {
           ...prevState.note,
-          color: name,
+          style: {
+            ...prevState.note.style,
+            backgroundColor: name,
+          },
         },
       }), () => {
       noteService.save(this.state.note);
     });
   }
 
-  noteStyle = () => {
-    const { color } = this.state.note;
-    const style = {};
-    switch (color) {
-      case 'white':
-      default:
-        style.backgroundColor = 'white';
-        break;
-      case 'red':
-        style.backgroundColor = 'lightcoral';
-        break;
-      case 'orange':
-        style.backgroundColor = 'goldenrod';
-        break;
-      case 'yellow':
-        style.backgroundColor = 'khaki';
-        break;
-      case 'green':
-        style.backgroundColor = 'palegreen';
-        break;
-      case 'teal':
-        style.backgroundColor = 'paleturquoise';
-        break;
-      case 'blue':
-        style.backgroundColor = 'lightcyan';
-        break;
-      case 'darkblue':
-        style.backgroundColor = 'lightblue';
-        break;
-      case 'purple':
-        style.backgroundColor = 'plum';
-        break;
-      case 'pink':
-        style.backgroundColor = 'mistyrose';
-        break;
-      case 'brown':
-        style.backgroundColor = 'wheat';
-        break;
-      case 'gray':
-        style.backgroundColor = 'lavender';
-        break;
-    }
-    return style;
-  };
-
   render() {
     const { note, isPaletteShown } = this.state;
-    const { txt } = note.info || this.props.note.info;
+    const { info, style } = note;
+    const { txt } = info || this.props.note.info;
     return (
-      <article className="note text-note" style={ this.noteStyle() }>
+      <article className="note text-note" style={ style }>
         <section
           className="note-content-section"
           contentEditable={ true }
@@ -145,18 +104,18 @@ export default class NoteText extends React.Component {
         </section>
         { isPaletteShown &&
           <section className="palette">
-            <button name="white" className="white" onClick={ this.changeColor }></button>
-            <button name="red" className="red" onClick={ this.changeColor }></button>
-            <button name="orange" className="orange" onClick={ this.changeColor }></button>
-            <button name="yellow" className="yellow" onClick={ this.changeColor }></button>
-            <button name="green" className="green" onClick={ this.changeColor }></button>
-            <button name="teal" className="teal" onClick={ this.changeColor }></button>
-            <button name="blue" className="blue" onClick={ this.changeColor }></button>
-            <button name="darkblue" className="darkblue" onClick={ this.changeColor }></button>
-            <button name="purple" className="purple" onClick={ this.changeColor }></button>
-            <button name="pink" className="pink" onClick={ this.changeColor }></button>
-            <button name="brown" className="brown" onClick={ this.changeColor }></button>
-            <button name="gray" className="gray" onClick={ this.changeColor }></button>
+            <button name="white" className="white" title="White" onClick={ this.changeColor }></button>
+            <button name="lightcoral" className="lightcoral" title="Red" onClick={ this.changeColor }></button>
+            <button name="goldenrod" className="goldenrod" title="Orange" onClick={ this.changeColor }></button>
+            <button name="khaki" className="khaki" title="Yellow" onClick={ this.changeColor }></button>
+            <button name="palegreen" className="palegreen" title="Green" onClick={ this.changeColor }></button>
+            <button name="paleturquoise" className="paleturquoise" title="Teal" onClick={ this.changeColor }></button>
+            <button name="lightcyan" className="lightcyan" title="Blue" onClick={ this.changeColor }></button>
+            <button name="lightblue" className="lightblue" title="Dark blue" onClick={ this.changeColor }></button>
+            <button name="plum" className="plum" title="Purple" onClick={ this.changeColor }></button>
+            <button name="mistyrose" className="mistyrose" title="Pink" onClick={ this.changeColor }></button>
+            <button name="wheat" className="wheat" title="Brown" onClick={ this.changeColor }></button>
+            <button name="lavender" className="lavender" title="Gray" onClick={ this.changeColor }></button>
           </section> }
       </article>
     );
