@@ -1,5 +1,6 @@
 import noteService from '../../services/noteService.js';
 import { eventBus } from '../../services/eventBusService.js';
+import Palette from '../notes/Palette.jsx';
 
 export default class NoteText extends React.Component {
   state = {
@@ -116,21 +117,7 @@ export default class NoteText extends React.Component {
           <button className="remove-note-button" onClick={ this.removeNote }></button>
           <button className="toggle-palette-button" onClick={ this.togglePalette } style={ this.paletteButtonStyle() }></button>
         </section>
-        { isPaletteShown &&
-          <section className="palette">
-            <button name="white" className="white" title="White" onClick={ this.changeColor }></button>
-            <button name="lightcoral" className="lightcoral" title="Red" onClick={ this.changeColor }></button>
-            <button name="goldenrod" className="goldenrod" title="Orange" onClick={ this.changeColor }></button>
-            <button name="khaki" className="khaki" title="Yellow" onClick={ this.changeColor }></button>
-            <button name="palegreen" className="palegreen" title="Green" onClick={ this.changeColor }></button>
-            <button name="paleturquoise" className="paleturquoise" title="Teal" onClick={ this.changeColor }></button>
-            <button name="lightcyan" className="lightcyan" title="Blue" onClick={ this.changeColor }></button>
-            <button name="lightblue" className="lightblue" title="Dark blue" onClick={ this.changeColor }></button>
-            <button name="plum" className="plum" title="Purple" onClick={ this.changeColor }></button>
-            <button name="mistyrose" className="mistyrose" title="Pink" onClick={ this.changeColor }></button>
-            <button name="wheat" className="wheat" title="Brown" onClick={ this.changeColor }></button>
-            <button name="lavender" className="lavender" title="Gray" onClick={ this.changeColor }></button>
-          </section> }
+        { isPaletteShown && <Palette changeColor={ this.changeColor } /> }
       </article>
     );
   }
