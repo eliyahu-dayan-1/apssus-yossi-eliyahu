@@ -27,14 +27,23 @@ export default class NoteText extends React.Component {
           lastModified: Date.now(),
         },
       }), () => {
-      noteService.save(this.state.note);
-      eventBus.emit('search-notes', this.props.searchTxt);
+      const { note } = this.state;
+      noteService.save(note)
+        .then(() => {
+          eventBus.emit('search-notes', this.props.searchTxt);
+          eventBus.emit('show-msg', { txt: note.isPinned ? 'Pinned!' : 'Unpinned!', type: 'success' });
+        })
+        .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
     });
   }
 
   removeNote = () => {
-    noteService.remove(this.state.note.id);
-    eventBus.emit('search-notes', this.props.searchTxt);
+    noteService.remove(this.state.note.id)
+      .then(() => {
+        eventBus.emit('search-notes', this.props.searchTxt);
+        eventBus.emit('show-msg', { txt: 'Note has been successfully deleted!', type: 'success' });
+      })
+      .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
   }
 
   handleChange = ({ target }) => {
@@ -48,7 +57,12 @@ export default class NoteText extends React.Component {
           info: { txt },
         },
       }), () => {
-      noteService.save(this.state.note);
+      noteService.save(this.state.note)
+        .then(() => {
+          eventBus.emit('search-notes', this.props.searchTxt);
+          eventBus.emit('show-msg', { txt: 'Note has been successfully updated!', type: 'success' });
+        })
+        .catch(() => eventBus.emit('show-msg', { txt: 'Something went wrong!', type: 'error' }));
     });
   }
 

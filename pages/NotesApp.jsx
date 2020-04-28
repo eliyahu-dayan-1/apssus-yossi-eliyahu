@@ -12,13 +12,15 @@ export default class NotesPage extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribeFromEventBus = eventBus.on('search-notes', searchTxt =>
+    this.unsubscribeFromEventSearchNotes = eventBus.on('search-notes', searchTxt =>
+      this.onSetFilter(searchTxt));
+    this.unsubscribeFromEventShowMessage = eventBus.on('show-message', searchTxt =>
       this.onSetFilter(searchTxt));
     this.loadNotes();
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromEventBus();
+    this.unsubscribeFromEventSearchNotes();
   }
 
   loadNotes() {

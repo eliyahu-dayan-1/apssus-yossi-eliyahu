@@ -4,6 +4,7 @@ import BookPage from './pages/BookPage.jsx';
 import EmailPage from './pages/EmailPage.jsx';
 import Footer from './cmps/Footer.jsx';
 import NavBar from './cmps/NavBar.jsx';
+import UserMsg from './cmps/UserMsg.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
 const { Route, Switch } = ReactRouterDOM;
@@ -13,6 +14,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Router >
+        <UserMsg />
         <div className="page-container flex column">
           <NavBar />
           <Switch>
