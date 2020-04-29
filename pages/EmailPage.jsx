@@ -16,13 +16,12 @@ export default class EmailPage extends React.Component {
     }
 
     componentDidMount(){
-        eventBus.on('url-change', () => this.setState())
     }
-
 
     render() {
         const { isNewMail } = this.state
 
+        console.log('email page')
         return (
             <Router >
                 <main className="email-main flex">

@@ -127,8 +127,8 @@ function _getGMails() {
             subject: 'Wassap?',
             body: 'Welcome to Academia.edu! 46,220,726 academics have joined the Academia.edu platform, and they have uploaded 16,918,538 papers in total.!',
             sentAt: 1551133333333,
-            isInbox: false,
-            isOutbox: true,
+            isInbox: true,
+            isOutbox: false,
             isRead: false,
             isMarked: false,
             isBookmarked: false,
@@ -144,7 +144,7 @@ function _getGMails() {
 
 function query(searchValue = undefined, previewCategory = [], orderBy = { category: 'sentAt', direction: true }) {
     var mails = gEmails
-    
+
     if (previewCategory.length && !searchValue) {
         mails = mails.filter(mail => {
             return previewCategory.some(category => {

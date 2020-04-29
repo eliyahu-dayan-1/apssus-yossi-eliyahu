@@ -26,7 +26,8 @@ export class EmailNavBarSide extends  React.Component {
 
         return (
             <div className="side-nav flex column"> 
-            {/* TODO change to link */}
+
+                {/* <Link to="/outbox">outbox</Link> */}
                 <div className="compose" onClick={ () => {addParam('compose' ,'newMessage')}}> <img className="icon" src="../../assets/img/icons/plus.png" alt="plus"/> Compose</div>
                 <div className="filter inbox" onClick={ () => {changeUrl('inbox')}}>Inbox</div>
                 <div className="filter outbox" onClick={ () => {changeUrl('outbox')}}>Outbox</div>

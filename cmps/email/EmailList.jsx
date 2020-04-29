@@ -16,19 +16,15 @@ export class EmailList extends React.Component {
     }
 
     componentDidMount() {
-        setPreviewCategory()
+        this.loadEmails()
         eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails()))
-        eventBus.on('url-change', () => this.setPreviewCategory())
     }
 
-    componentDidUpdate() {
-    }
 
-    setPreviewCategory = () => {
-        const previewCategory = this.props.match.params.previewCategory
-        this.setState({ previewCategory: [`is${this.capitalize(previewCategory)}`] }, () => {
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.previewCategory !== this.props.match.params.previewCategory) {
             this.loadEmails()
-        })
+        }
     }
 
     capitalize = (str) => {
@@ -48,12 +44,14 @@ export class EmailList extends React.Component {
     }
 
     loadEmails = () => {
-        console.log('load is here')
-        emailService.query(this.state.searchValue, this.state.previewCategory)
+        let previewCategory = this.props.match.params.previewCategory
+        previewCategory = [`is${this.capitalize(previewCategory)}`]
+        console.log(previewCategory)
+    
+        emailService.query(this.state.searchValue, previewCategory)
             .then(emails => {
-                this.setState({ emails }, () => console.log(this.state.emails))
+                this.setState({ emails, previewCategory }, () => console.log(this.state.emails))
             })
-            .catch(err => console.log('cant load emails'))
     }
 
     onSetFilter = (previewCategory) => {

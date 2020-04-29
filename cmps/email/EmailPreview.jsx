@@ -55,7 +55,10 @@ export class EmailPreview extends React.Component {
                 </div>
                 <div className="from">{email.to}</div>
                 <div className="subject">{email.subject}</div>
-                <LongText className={'body'} howMuchLong={80} text={email.body}/>
+                {!email.isNote && <LongText className={'body'} howMuchLong={80} text={email.body}/>}
+
+                {/* {email.isNote && <div className="body" ><NoteDynamicCmp key={ note.id } note={ note } searchTxt={ searchTxt } />)} </div>} */}
+                
                 <div className="date">{convertTimeStamp()}</div>
             </Link>
         )
