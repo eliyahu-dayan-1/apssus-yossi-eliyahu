@@ -32,7 +32,7 @@ export class EmailFilter extends React.Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.onSearch}>
-                    <input type="text" name='searchBy' value={searchValue} onChange={this.handleChange} />
+                    <input className="search-input" type="text" name='searchBy' value={searchValue} onChange={this.handleChange} />
                 </form>
                 <select id="search-option" onChange={(event) => { this.onSelectSearchCategory(event) }}>
                     <option value="">choose your option</option>
