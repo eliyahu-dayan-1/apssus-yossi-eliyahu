@@ -5,7 +5,9 @@ export const emailService = {
     query,
     getById,
     add,
-    toggleLabel
+    toggleLabel,
+    addEmail,
+    deleteEmailById,
 }
 
 const MAILS_KEY = 'mails'
@@ -141,6 +143,19 @@ function _getGMails() {
     storageService.store(MAILS_KEY, gEmails);
 }
 
+function addEmail(email){
+    const newMail = _createNewEmail(email);
+
+    gEmails.push(newMail)
+    storageService.store(MAILS_KEY, gEmails);
+}
+
+function deleteEmailById(id){
+    const email = gEmails.find(email => email.id === id)
+    email.isDraft = true
+    storageService.store(MAILS_KEY, gEmails);
+}
+
 
 function query(searchValue = undefined, previewCategory = [], orderBy = { category: 'sentAt', direction: true }) {
     var mails = gEmails
@@ -148,7 +163,11 @@ function query(searchValue = undefined, previewCategory = [], orderBy = { catego
     if (previewCategory.length && !searchValue) {
         mails = mails.filter(mail => {
             return previewCategory.some(category => {
-                return mail[category] === true
+                if(mail.isTrash && category !== 'isTrash') {
+                    console.log('bli')
+                    return false;
+                }
+                return mail[category] === true;
             })
         })
     }
@@ -167,10 +186,10 @@ function query(searchValue = undefined, previewCategory = [], orderBy = { catego
             const mailB = b[orderBy.category].toString().toLowerCase();
 
             if (mailA > mailB) {
-                return (orderDirection) ? 1 : -1;
+                return (orderDirection) ? -1 : -1;
             }
             if (mailA < mailB) {
-                return (orderDirection) ? -1 : 1;
+                return (orderDirection) ? 1 : -1;
             }
             return 0;
         });

@@ -1,32 +1,53 @@
+import { eventBus } from "../../services/eventBusService.js"
+
 export class NewEmail extends React.Component {
     state = {
         email: {
             to: "",
             subject: "",
             body: "",
+            from: 'dayan0544@gmail.com',
+            mailedBy: 'eliyahu dayan',
         }
+    }
+
+    componentDidMount() {
+        console.log('mount')
+    }
+
+
+    componentDidUpdate(prevProps) {
+        console.log('update')
     }
 
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
 
-        this.setState(prevState => ({ email: { ...prevState.filter, [field]: value } }))
+        this.setState(prevState => ({ email: { ...prevState.email, [field]: value }}))
     }
 
     onExit = () => {
-        
+        const email = this.state.email
+        email.isDraft = true;
+        email.sentAt = Date.now();
+        eventBus.emit('close-new-message', email);
     }
-
+    
     onSend = () => {
-
+        const email = this.state.email
+        email.isDraft = false;
+        email.isInbox = true;
+        email.isOutBox = true;
+        email.sentAt = Date.now();
+        eventBus.emit('close-new-message',  email)
     }
 
     render() {
 
         const { to, subject, body } = this.state.email
         const { onExit, onSend } = this
-
+        console.log(to)
         return (
 
             <div className="new-email flex column">

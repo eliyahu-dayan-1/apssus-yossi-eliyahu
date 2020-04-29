@@ -3,6 +3,7 @@ import { Loading } from '../Loading.jsx'
 import { emailService } from '../../services/emailService.js';
 import { eventBus } from "../../services/eventBusService.js";
 import { EmailNavBarUp } from '../../cmps/email/EmailNavBarUp.jsx';
+import { utilService } from '../../services/utilService.js';
 
 
 
@@ -41,6 +42,7 @@ export class EmailList extends React.Component {
     onDeleteMail = (ev, id) => {
         ev.stopPropagation()
         ev.preventDefault()
+        emailService.deleteEmailById(id)
     }
 
     loadEmails = () => {

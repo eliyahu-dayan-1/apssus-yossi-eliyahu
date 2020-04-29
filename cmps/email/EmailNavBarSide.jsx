@@ -23,6 +23,7 @@ export class EmailNavBarSide extends  React.Component {
     render() {
 
         const {changeUrl,addParam} = this;
+        const {emails} = this.props;
 
         return (
             <div className="side-nav flex column"> 
@@ -33,8 +34,9 @@ export class EmailNavBarSide extends  React.Component {
                 <div className="filter outbox" onClick={ () => {changeUrl('outbox')}}>Outbox</div>
                 <div className="filter sarred" onClick={ () => {changeUrl('star')}}>Satred</div>
                 <div className="filter important" onClick={ () => {changeUrl('important')}}>Important</div>
+                <div className="filter draft" onClick={ () => {changeUrl('draft')}}>Draft</div>
                 <div className="filter trash" onClick={ () => {changeUrl('trash')}}>Trash</div>
-                <EmailStatus />
+                <EmailStatus emails={emails}/>
             </div>
         )
     }

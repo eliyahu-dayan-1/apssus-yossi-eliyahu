@@ -3,11 +3,12 @@
     background: 0;
     cursor: pointer;
     outline: 0;
+    position: relative;
 }
 
 
 .email-main{
-    margin-top: 10px;
+    padding: 20px 0;
     padding-right: 20px;
 }
 
@@ -165,4 +166,19 @@ img.icon:hover{
     height: 100%;
     width: 100%;
     background-color: 0;
+}
+
+.status-container {
+    width: 90%;
+    background-color: #747d8c;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.status-bar {
+    background-color: #2ed573;
+    color: white;
+    letter-spacing: 1px;
+    margin: 0;
+    border-radius: 4px;
 }
