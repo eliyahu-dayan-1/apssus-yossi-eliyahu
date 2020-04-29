@@ -33,6 +33,7 @@ export class EmailNavBarSide extends  React.Component {
                 <div className="filter outbox" onClick={ () => {changeUrl('outbox')}}>Outbox</div>
                 <div className="filter sarred" onClick={ () => {changeUrl('star')}}>Satred</div>
                 <div className="filter important" onClick={ () => {changeUrl('important')}}>Important</div>
+                <div className="filter important" onClick={ () => {changeUrl('draft')}}>Draft</div>
                 <div className="filter trash" onClick={ () => {changeUrl('trash')}}>Trash</div>
                 <EmailStatus />
             </div>
