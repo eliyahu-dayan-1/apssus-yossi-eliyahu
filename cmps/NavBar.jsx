@@ -18,8 +18,8 @@ export default function NavBar() {
         </Switch>
         <nav className="main-nav">
             <NavLink className="main-nav-link" exact to="/">Home</NavLink>
-            <NavLink className="main-nav-link" exact to="/notes">Note</NavLink>
-            <NavLink className="main-nav-link" exact to="/book">Book</NavLink>
+            <NavLink className="main-nav-link" exact to="/notes">Notes</NavLink>
+            <NavLink className="main-nav-link" exact to="/book">Books</NavLink>
             <NavLink className="main-nav-link" exact to="/inbox">Email</NavLink>
         </nav>
       </header>
