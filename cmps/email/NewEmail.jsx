@@ -11,22 +11,35 @@ export class NewEmail extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log('mount')
+    }
+
+
+    componentDidUpdate(prevProps) {
+        console.log('update')
+    }
+
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
 
-        this.setState(prevState => ({ email: { ...prevState.email, [field]: value } }, console.log(this.state.email)))
+        this.setState(prevState => ({ email: { ...prevState.email, [field]: value }}))
     }
 
     onExit = () => {
         const email = this.state.email
         email.isDraft = true;
-        eventBus.emit('close-new-message', email)
+        email.sentAt = Date.now();
+        eventBus.emit('close-new-message', email);
     }
     
     onSend = () => {
         const email = this.state.email
         email.isDraft = false;
+        email.isInbox = true;
+        email.isOutBox = true;
+        email.sentAt = Date.now();
         eventBus.emit('close-new-message',  email)
     }
 
@@ -34,7 +47,7 @@ export class NewEmail extends React.Component {
 
         const { to, subject, body } = this.state.email
         const { onExit, onSend } = this
-
+        console.log(to)
         return (
 
             <div className="new-email flex column">

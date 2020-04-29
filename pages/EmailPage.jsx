@@ -8,6 +8,7 @@ import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
 import { EmailNavBarSide } from '../cmps/email/EmailNavBarSide.jsx';
 import { NewEmail } from '../cmps/email/NewEmail.jsx';
+import { emailService } from "../services/emailService.js";
 
 
 
@@ -16,41 +17,76 @@ export default class EmailPage extends React.Component {
         isNewMail: true,
         currUrl: null,
         queryStringData: null,
-        isNewMessageOpen: false
+        isNewMessageOpen: false,
+        emails: null,
+        previewCategory: null,
+        searchValue: null,
+        selectedEmail: null,
+
     }
 
 
     componentDidMount() {
+        this.loadEmails()
         this.readUrl(undefined)
         eventBus.on('close-new-message', (email) => {
             console.log(email)
-            this.setState({ isNewMessageOpen: false})
+            emailService.addEmail(email)
+            // this.setState({ isNewMessageOpen: false})
+            var value = this.props.location.pathname
+            this.props.history.push(`${value}`)
+            this.readUrl(undefined)
         })
     }
 
+    
     componentDidUpdate(prevProps) {
+        if (prevProps.match.params.previewCategory !== this.props.match.params.previewCategory) {
+            this.loadEmails()
+        }
         this.readUrl(prevProps)
+    }
+
+    loadEmails = () => {
+        let previewCategory = this.props.match.params.previewCategory
+        previewCategory = [`is${this.capitalize(previewCategory)}`]
+        console.log(previewCategory)
+
+        emailService.query(this.state.searchValue, previewCategory)
+            .then(emails => {
+                this.setState({ emails, previewCategory }, () => console.log(this.state.emails))
+            })
+    }
+
+    capitalize = (str) => {
+        return str[0].toUpperCase() + str.slice(1);
     }
 
     readUrl = (prevProps) => {
         const queryString = this.props.location.search;
         let prevQueryString = null
-        if(prevProps && prevProps.location) prevQueryString = prevProps.location.search;
+        if (prevProps && prevProps.location) prevQueryString = prevProps.location.search;
         const queryStringData = utilService.getJsonFromUrl(queryString)
-        if(!queryStringData.compose && this.state.isNewMessageOpen) this.setState({ isNewMessageOpen: false  ,queryStringData :{compose: "empty"}}, () => console.log(this.state))
+
+        console.log(this.props.location)
+        if (!queryStringData.compose && this.state.isNewMessageOpen) this.setState({ isNewMessageOpen: false, queryStringData: { compose: "empty" } }, () => console.log(this.state))
         if (!this.state.isNewMessageOpen && queryStringData.compose === 'newMessage') {
-            this.setState({ isNewMessageOpen: true ,queryStringData}, () => console.log(this.state))
+            this.setState({ isNewMessageOpen: true, queryStringData }, () => console.log(this.state))
         }
     }
 
+    getEmails = () => {
+
+    }
+
     render() {
-        const { queryStringData, isNewMessageOpen } = this.state
+        const { queryStringData, isNewMessageOpen, emails } = this.state
 
         console.log('email page')
         return (
             <Router >
                 <main className="email-main flex">
-                    <EmailNavBarSide history={this.props.history} />
+                    <EmailNavBarSide history={this.props.history} emails={emails}/>
 
                     <Switch>
                         <Route component={EmailDetails} path="/:previewCategory/:emailId" />
