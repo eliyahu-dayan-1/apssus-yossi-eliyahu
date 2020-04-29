@@ -157,6 +157,9 @@ export default () => [
     type: 'NoteImg',
     isPinned: true,
     color: 'white',
+    style: {
+      backgroundColor: 'lightcyan',
+    },
     info: {
       title: 'Some programmers joke',
       url: './assets/img/meme.jpg',
@@ -167,7 +170,9 @@ export default () => [
     id: '6pmKAkPhcjK8',
     type: 'NoteVideo',
     isPinned: false,
-    color: 'white',
+    style: {
+      backgroundColor: 'palegreen',
+    },
     info: {
       title: 'Coding Academy',
       url: 'https://youtu.be/F2aSHWyVTBw',
