@@ -2,6 +2,7 @@ const Router = ReactRouterDOM.HashRouter;
 const { Route, Switch, Link } = ReactRouterDOM;
 
 
+import { eventBus } from "../services/eventBusService.js";
 import { utilService } from "../services/utilService.js";
 import { EmailList } from '../cmps/email/EmailList.jsx';
 import { EmailDetails } from '../cmps/email/EmailDetails.jsx';
@@ -21,6 +22,10 @@ export default class EmailPage extends React.Component {
 
     componentDidMount() {
         this.readUrl(undefined)
+        eventBus.on('close-new-message', (email) => {
+            console.log(email)
+            this.setState({ isNewMessageOpen: false})
+        })
     }
 
     componentDidUpdate(prevProps) {

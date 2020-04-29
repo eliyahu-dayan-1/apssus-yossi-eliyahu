@@ -1,9 +1,13 @@
+import { eventBus } from "../../services/eventBusService.js"
+
 export class NewEmail extends React.Component {
     state = {
         email: {
             to: "",
             subject: "",
             body: "",
+            from: 'dayan0544@gmail.com',
+            mailedBy: 'eliyahu dayan',
         }
     }
 
@@ -11,15 +15,19 @@ export class NewEmail extends React.Component {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
 
-        this.setState(prevState => ({ email: { ...prevState.filter, [field]: value } }))
+        this.setState(prevState => ({ email: { ...prevState.email, [field]: value } }, console.log(this.state.email)))
     }
 
     onExit = () => {
-        
+        const email = this.state.email
+        email.isDraft = true;
+        eventBus.emit('close-new-message', email)
     }
-
+    
     onSend = () => {
-
+        const email = this.state.email
+        email.isDraft = false;
+        eventBus.emit('close-new-message',  email)
     }
 
     render() {
