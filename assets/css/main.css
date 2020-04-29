@@ -6,6 +6,7 @@
 
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
@@ -101,7 +102,6 @@ p {
 }
 
 .main-nav-link {
-  width: 5rem;
   font-size: 1.5rem;
   text-transform: uppercase;
   color: dimgray;
@@ -126,6 +126,42 @@ main {
   box-shadow:
     0 1px 2px 0 rgba(60, 64, 67, 0.302),
     0 2px 6px 2px rgba(60, 64, 67, 0.149);
+}
+
+/* homepage */
+
+.homepage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-app-link {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  background-size: contain;
+  transition: 0.3s;
+}
+
+.homepage-app-link:hover {
+  transform: scale(1.2);
+}
+
+.homepage-app-link:not(:last-child) {
+  margin-inline-end: 2rem;
+}
+
+.homepage-notes-link {
+  background-image: url(../img/notes-app.png);
+}
+
+.homepage-books-link {
+  background-image: url(../img/books-app.png);
+}
+
+.homepage-email-link {
+  background-image: url(../img/mail-app.png);
 }
 
 /* footer */
