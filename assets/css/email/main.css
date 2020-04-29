@@ -1,3 +1,5 @@
+/* default css */
+
 .email-main input, .email-main textarea{
     border: 0;
     background: 0;
@@ -7,16 +9,23 @@
 }
 
 
+/* main */
+
 .email-main{
     padding: 20px 0;
     padding-right: 20px;
+    /* background-image: url('../../img/background-pic.jpeg'); 
+    object-fit: cover;
+    background-repeat: no-repeat; */
+
 }
 
+/* side-nav */
 .side-nav{
     padding-right: 40px;
 }
 
-.side-nav > *:not(h2){
+.side-nav > *:not(:last-child){
     cursor: pointer;
 }
 
@@ -27,24 +36,54 @@
     width: max-content;
     box-shadow: 0 0 2px black;
     border-radius: 999px;
+    transition: 0.5s;
+}
+
+.side-nav .compose:hover{
+    box-shadow: 0 0 5px black;
 }
 
 .side-nav .filter{
-    background-color: rgb(47, 47, 177, 0.2);
+    background-color: rgba(195, 195, 197, 0.952);
     border-radius: 0px 81px 81px 0px;
     padding: 10px 0;
     text-align: center;
     transition: .5s;
+    font-weight: bold;
 }
 
 .side-nav .filter:hover{
-    background-color: rgb(47, 47, 177, 0.8);
+    background-color: rgba(165, 165, 168, 0.952);
+    box-shadow: inset 0 0 1px rgba(96, 96, 97, 0.952);
 
 }
 
 .side-nav .filter:not(:last-child){
     margin-bottom: 10px;
 }
+
+.side-nav .status-container {
+    width: 90%;
+    background-color: #747d8c;
+    margin: 0;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.side-nav .status-bar {
+    background-color: black;
+    color: white;
+    letter-spacing: 1px;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.side-nav .status-bar span{
+    padding-left: 20px;
+}
+
+
+/* email list */
 
 .email-list{
     margin-inline-start: 20px;
@@ -53,7 +92,6 @@
 .email-list .navbar-up{
     padding: 20px 10px;
 }
-
 
 .emails-preview{
     background-color: rgba(214, 213, 213, 0.192);
@@ -70,31 +108,31 @@
 }
 
 .email-preview .option > *:not(:last-child){
-    margin-right: 20px;    
+    margin-right: 15px;    
 }
 
 img.icon{
-    width: 15px;
+    width: 17px;
     transition: .5s;
 }
 
 img.icon:hover{
-    width: 17px;
+    background-color: rgb(197, 194, 194);
 }
+
+/* email details */
 
 .email-details{
-    background-color: indianred;
+   
+    background-color: ;
 } 
 
-.details > *{
-    padding-left: 20px;
-    padding: 20px 0 20px 20px;
-}
+
 .email-details .return{
     padding: 7px 40px;
-    background-color: grey;
+    background-color: ;
     width: min-content;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .email-details .return img{
@@ -103,28 +141,56 @@ img.icon:hover{
 }
 
 .email-details .details .subject{
-    background-color: hotpink;
 
 }
 
 .email-details .details .data-frame{
-    background-color: gold;
+
 }
+
+.details{
+    box-shadow: 0px 0px 1px 0px black;
+}
+
+.details > *{
+    padding-left: 20px;
+    padding: 20px 0 20px 20px;
+}
+
+.details span{
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.details > *:not(:last-child){
+    border-bottom: 1px solid rgb(222, 220, 231);
+}
+
+
+
+/* new email */
 
 .new-email{
     position: fixed;
-    background-color: rgb(233, 229, 229);
+    background-color: rgb(222, 220, 231);
     right: 20px;
-    bottom: 20px;
-    height: 50vh;
-    width: 50vw;
+    bottom: 50px;
+    height: 70vh;
+    width: 70vw;
     box-shadow: 2px 2px 7px 0.001px black;
 
 }
 
 .new-email .message-header{
     background-color: lightcyan;
-    padding: 20px;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.new-email .message-header > *:first-child{
+   font-family: caveat;
+   font-weight: bold;
+    font-size: 35px;
 }
 
 .new-email .message-header .exit{
@@ -152,14 +218,12 @@ img.icon:hover{
 
 .new-email .message-footer{
     background-color: lightcyan;
-    padding: 20px;
 }
 
 .new-email .message-footer .send{
     float: right;
     cursor: pointer;
     padding: 10px 30px;
-    background-color: indianred;
 }
 
 .new-email textarea{
@@ -168,17 +232,3 @@ img.icon:hover{
     background-color: 0;
 }
 
-.status-container {
-    width: 90%;
-    background-color: #747d8c;
-    margin: 0;
-    border-radius: 4px;
-}
-
-.status-bar {
-    background-color: #2ed573;
-    color: white;
-    letter-spacing: 1px;
-    margin: 0;
-    border-radius: 4px;
-}

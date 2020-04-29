@@ -58,11 +58,11 @@ export class EmailDetails extends React.Component {
                 }}><img src="./assets/img/icons/return.png" alt="" /></div>
 
                 <div className="details grow-1">
-                    <div className="subject">{email.subject}</div>
+                    <div className="subject"><span>subject:  </span>{email.subject}</div>
                     <div className="data-frame flex column">
-                        <div className="from"><span>from:</span>{ email.from }</div>
-                        <div className="to"><span>to:</span>{ email.to }</div>
-                        <div className="date">{convertTimeStamp()}</div>
+                        <div className="from"><span>from:  </span>{ email.from }</div>
+                        <div className="to"><span>to:  </span>{ email.to }</div>
+                        <div className="date"><span>date:  </span>convertTimeStamp()}</div>
                         {/* TODO add a star etc */}
                         {/* <div className="star">*</div>
                         <div className="bookmark">^</div> */}

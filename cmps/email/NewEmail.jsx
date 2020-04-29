@@ -52,7 +52,7 @@ export class NewEmail extends React.Component {
 
             <div className="new-email flex column">
                 <div className="message-header flex space-between">
-                    <div>new-message</div>
+                    <div>new  message</div>
                     <div className="exit" onClick={() => onExit()}>✖️</div>
                 </div>
                 <form className="message-body flex column grow-1" onSubmit={this.onSend}>
