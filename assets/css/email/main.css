@@ -1,3 +1,10 @@
+.email-main input, .email-main textarea{
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    outline: 0;
+}
+
 
 .email-main{
     margin-top: 10px;
@@ -5,7 +12,7 @@
 }
 
 .side-nav{
-    padding-right: 20px;
+    padding-right: 40px;
 }
 
 .side-nav > *:not(h2){
@@ -16,6 +23,7 @@
     margin-left: 20px;
     margin-bottom: 20px;
     padding: 20px;
+    width: max-content;
     box-shadow: 0 0 2px black;
     border-radius: 999px;
 }
@@ -64,22 +72,97 @@
     margin-right: 20px;    
 }
 
-.icon > img{
+img.icon{
     width: 15px;
     transition: .5s;
 }
 
-.icon > img:hover{
+img.icon:hover{
     width: 17px;
 }
 
+.email-details{
+    background-color: indianred;
+} 
+
+.details > *{
+    padding-left: 20px;
+    padding: 20px 0 20px 20px;
+}
 .email-details .return{
-    padding: 10px 30px;
+    padding: 7px 40px;
     background-color: grey;
     width: min-content;
+    margin-bottom: 50px;
 }
 
 .email-details .return img{
     width: 30px;
     cursor: pointer;
+}
+
+.email-details .details .subject{
+    background-color: hotpink;
+
+}
+
+.email-details .details .data-frame{
+    background-color: gold;
+}
+
+.new-email{
+    position: fixed;
+    background-color: rgb(233, 229, 229);
+    right: 20px;
+    bottom: 20px;
+    height: 50vh;
+    width: 50vw;
+    box-shadow: 2px 2px 7px 0.001px black;
+
+}
+
+.new-email .message-header{
+    background-color: lightcyan;
+    padding: 20px;
+}
+
+.new-email .message-header .exit{
+    cursor: pointer;
+}
+
+.new-email .message-body{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.new-email .message-body .subject input{
+    width: 50%;
+}
+
+.new-email .message-body > *:not(:last-child){
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid  rgb(184, 184, 184);
+}
+
+.new-email .message-body > *:last-child{
+    padding-top: 15px;
+}
+
+.new-email .message-footer{
+    background-color: lightcyan;
+    padding: 20px;
+}
+
+.new-email .message-footer .send{
+    float: right;
+    cursor: pointer;
+    padding: 10px 30px;
+    background-color: indianred;
+}
+
+.new-email textarea{
+    height: 100%;
+    width: 100%;
+    background-color: 0;
 }

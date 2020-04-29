@@ -2,7 +2,7 @@ export class EmailNavBarUp extends React.Component {
 
 
     iconLink = (iconName) => {
-        return <img src={`../../assets/img/icons/${iconName}`} alt={iconName} />
+        return <img className="icon" src={`../../assets/img/icons/${iconName}`} alt={iconName} />
     }
 
 

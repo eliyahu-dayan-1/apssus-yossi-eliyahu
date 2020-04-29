@@ -3,9 +3,9 @@ export class EmailStatus extends React.Component {
     render() {
         return (
 
-            <main>
+            <div>
                 <h2>EmailStatus</h2>
-            </main>
+            </div>
         )
     }
 }

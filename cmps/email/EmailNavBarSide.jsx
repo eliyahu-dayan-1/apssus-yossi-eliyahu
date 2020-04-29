@@ -1,6 +1,8 @@
 
 import { EmailStatus } from './EmailStatus.jsx';
 import { eventBus } from '../../services/eventBusService.js';
+const { Link } = ReactRouterDOM;
+
 
 
 export class EmailNavBarSide extends  React.Component {
@@ -24,12 +26,13 @@ export class EmailNavBarSide extends  React.Component {
 
         return (
             <div className="side-nav flex column"> 
-                <div className="compose" onClick={ () => {addParam('compose' ,'newMessage')}}> + Compose</div>
-                <div className="filter inbox" onClick={ () => {changeUrl('inbox')}}>inbox</div>
-                <div className="filter outbox" onClick={ () => {changeUrl('outbox')}}>outbox</div>
-                <div className="filter sarred" onClick={ () => {changeUrl('starred')}}>Satared</div>
+            {/* TODO change to link */}
+                <div className="compose" onClick={ () => {addParam('compose' ,'newMessage')}}> <img className="icon" src="../../assets/img/icons/plus.png" alt="plus"/> Compose</div>
+                <div className="filter inbox" onClick={ () => {changeUrl('inbox')}}>Inbox</div>
+                <div className="filter outbox" onClick={ () => {changeUrl('outbox')}}>Outbox</div>
+                <div className="filter sarred" onClick={ () => {changeUrl('star')}}>Satred</div>
                 <div className="filter important" onClick={ () => {changeUrl('important')}}>Important</div>
-                <div className="filter unread" onClick={ () => {changeUrl('unread')}}>Unread</div>
+                <div className="filter trash" onClick={ () => {changeUrl('trash')}}>Trash</div>
                 <EmailStatus />
             </div>
         )

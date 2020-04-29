@@ -54,16 +54,20 @@ export class EmailDetails extends React.Component {
         return (
             <div className="email-details flex column grow-1">
                 <div className="return" onClick={() => {
-            history.goBack();
-        }}><img src="../../assets/img/icons/return.png" alt=""/></div>
-                    <div className="details grow-1">
-                    <div className="choose"></div>
-                    <div className="star">*</div>
-                    <div className="bookmark">^</div>
-                    <div className="from"></div>
+                    history.goBack();
+                }}><img src="../../assets/img/icons/return.png" alt="" /></div>
+
+                <div className="details grow-1">
                     <div className="subject">{email.subject}</div>
-                    <div className="body">{email.body}</div>}
-                <div className="date">{convertTimeStamp()}</div>
+                    <div className="data-frame flex column">
+                        <div className="from"><span>from:</span>{ email.from }</div>
+                        <div className="to"><span>to:</span>{ email.to }</div>
+                        <div className="date">{convertTimeStamp()}</div>
+                        {/* TODO add a star etc */}
+                        {/* <div className="star">*</div>
+                        <div className="bookmark">^</div> */}
+                    </div>
+                    <div className="body">{email.body}</div>
                 </div>
             </div>
         )

@@ -13,8 +13,9 @@ export class EmailPreview extends React.Component {
         this.setState({email: this.props.email})
     }
 
+
     iconLink = (iconName) => {
-        return <img src={`../../assets/img/icons/${iconName}`} alt="iconName" />
+        return <img className="icon" src={`../../assets/img/icons/${iconName}`} alt="iconName" />
     }
 
     convertTimeStamp = () => {
@@ -34,10 +35,11 @@ export class EmailPreview extends React.Component {
         return `${day}/${Month}/${year} ${clock}`
     }
 
+
     render() {
 
         const { email } = this.state;
-        const { onSelectEmail } = this.props;
+        const { onSelectEmail, onToggleLabel, onDeleteMail } = this.props;
         const {iconLink, convertTimeStamp} = this;
 
         if(!email) return < Loading/>
@@ -45,11 +47,11 @@ export class EmailPreview extends React.Component {
         return (
             <Link className="email-preview further-details flex space-between" onClick={() => onSelectEmail(email.id)} >
                 <div className="option flex">
-                    <div className="icon choose">{(email.isChoose) ? iconLink("check-box-full.png") : iconLink("check-box-empty.png")}</div>
-                    <div className="icon trash "> {iconLink("trash.png")}</div>
-                    <div className="icon choose">{(email.isReaded) ? iconLink("message-full.png") : iconLink("message-empty.png")}</div>
-                    <div className="icon star">{(email.isStared) ? iconLink("star-full.png") : iconLink("star-empty.png")}</div>
-                    <div className="icon bookmark">{(email.isImportant) ? iconLink("bookmark-full.png") : iconLink("bookmark-empty.png")}</div>
+                    <div className="choose" onClick = {(event) => onToggleLabel(event, 'isChoose', email.id)} >{(email.isChoose) ? iconLink("check-box-full.png") : iconLink("check-box-empty.png")}</div>
+                    <div className="trash" onClick = {(event) => onDeleteMail(event, email.id)} > {iconLink("trash.png")}</div>
+                    <div className="read" onClick = {(event) => onToggleLabel(event, 'isRead', email.id)} >{(email.isRead) ? iconLink("message-full.png") : iconLink("message-empty.png")}</div>
+                    <div className="star" onClick = {(event) => onToggleLabel(event, 'isStar', email.id)} >{(email.isStar) ? iconLink("star-full.png") : iconLink("star-empty.png")}</div>
+                    <div className="bookmark" onClick = {(event) => onToggleLabel(event, 'isImportant', email.id)} >{(email.isImportant) ? iconLink("bookmark-full.png") : iconLink("bookmark-empty.png")}</div>
                 </div>
                 <div className="from">{email.to}</div>
                 <div className="subject">{email.subject}</div>
