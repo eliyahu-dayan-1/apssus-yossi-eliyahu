@@ -25,6 +25,5 @@ export default function NavBar() {
         </div>
       </header>
       </nav>
-      {/* <UserMsg /> */}
     </Router >;
 }
