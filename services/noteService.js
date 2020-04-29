@@ -9,6 +9,7 @@ export default {
   createImageNote,
   createVideoNote,
   remove,
+  getById,
 };
 
 const STORAGE_KEY = 'notes';
@@ -109,9 +110,10 @@ function remove(noteId) {
   return Promise.resolve();
 }
 
-// function getById(noteId) {
-//   return Promise.resolve(gNotes.find(b => b.id === noteId));
-// }
+function getById(noteId) {
+  // return Promise.resolve(gNotes.find(b => b.id === noteId));
+  return gNotes.find(b => b.id === noteId);
+}
 
 function getIdxById(noteId) {
   return gNotes.findIndex(note => note.id === noteId);

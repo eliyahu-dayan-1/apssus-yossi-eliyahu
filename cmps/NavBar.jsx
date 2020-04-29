@@ -1,4 +1,3 @@
-// import UserMsg from './UserMsg.jsx';
 import NotesFilter from './notes/NotesFilter.jsx';
 import { EmailFilter } from '../cmps/email/EmailFilter.jsx';
 
