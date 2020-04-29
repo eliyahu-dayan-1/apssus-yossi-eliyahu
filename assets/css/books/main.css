@@ -3,11 +3,46 @@
   width: 100%;
   height: 100;
   padding: 1rem;
+  padding-block-end: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
+}
+
+.books-filter-section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.books-filter-input {
+  height: 3rem;
+  width: 10rem;
+  padding: 1rem 0.5rem;
+  margin-inline-end: 1rem;
+  border: solid transparent;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+}
+
+.books-filter-input:active,
+.books-filter-input:focus {
+  outline: none;
+}
+
+.books-filter-button {
+  width: 5rem;
+  height: 3rem;
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  border-radius: 0.5rem;
+  font-weight: bold;
 }
 
 .book-list {
@@ -20,15 +55,77 @@
 }
 
 .book-preview {
-  width: calc((100vw - 2rem) / 5);
-  min-width: calc((100vw - 2rem) / 5);
+  min-width: calc((100vw - 7rem) / 5);
+  max-width: calc((100vw - 7rem) / 5);
+  /* height: auto; */
+  height: 35rem;
+  padding: 1rem;
   margin-block-end: 1rem;
+  margin-inline-end: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  white-space: pre-wrap;
+  transition: 0.3s;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: space-around;
 }
 
-.book-preview:not(:last-child) {
-  margin-inline-end: 1rem;
+.book-preview:nth-child(5n+0) {
+  margin-inline-end: 0;
+}
+
+.book-preview:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
 .book-preview-image {
   width: 100%;
+  height: 100%;
+  background-color: white;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.add-book-link {
+  /* background-color: whitesmoke; */
+}
+
+.book-preview-details-link {
+  width: 100%;
+  max-height: 85%;
+}
+
+.add-book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.book-preview-info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-preview-title {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.book-preview-price {
+  text-align: center;
+}
+
+.book-preview-edit-link {
+  width: 1rem;
+  height: 1rem;
+  background-size: contain;
+  margin: 0.5rem;
+  background-image: url(../../img/edit.png);
 }

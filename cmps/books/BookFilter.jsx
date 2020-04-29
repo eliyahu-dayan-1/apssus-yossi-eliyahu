@@ -24,18 +24,14 @@ export default class Filter extends React.Component {
   render() {
     const { title, maxPrice, minPrice } = this.state.filter;
     return (
-        <React.Fragment>
-            <h1>Filter:</h1>
-            <form onSubmit={ this.onFilter }>
-                <label htmlFor="">By title</label>
-                <input type="text" name="title" value={ title } onChange={ this.handleChange } />
-                <label htmlFor="">min price</label>
-                <input type="number" name="minPrice" value={ minPrice } onChange={ this.handleChange } />
-                <label htmlFor="">max price</label>
-                <input type="number" name="maxPrice" value={ maxPrice } onChange={ this.handleChange } />
-                <button>Filter</button>
-            </form>
-        </React.Fragment>
+      <section className="books-filter-section">
+        <form onSubmit={ this.onFilter }>
+            <input className="books-filter-input" type="text" name="title" value={ title } placeholder="Title..." onChange={ this.handleChange } />
+            <input className="books-filter-input" type="number" name="minPrice" value={ minPrice } placeholder="Min price..." onChange={ this.handleChange } />
+            <input className="books-filter-input" type="number" name="maxPrice" value={ maxPrice } placeholder="Max price..." onChange={ this.handleChange } />
+            <button className="books-filter-button" type="submit">Filter</button>
+        </form>
+      </section>
     );
   }
 }

@@ -8,11 +8,14 @@ export default function BookPreview({ book }) {
   const currencySign = getCurrencySign(currencyCode);
   return (
       <article className="book-preview">
-        <img className="book-preview-image" src={ thumbnail } alt={ title } />
-        <p>title: { title }</p>
-        <p>Price: { currencySign }{ amount }</p>
-        <Link to={ `/book/${id}/${title}` }>Details</Link> |
-        <Link to={ `/book/edit/${id}` }>Edit</Link>
+        <Link className="book-preview-details-link" to={ `/book/${id}/${title}` }>
+          <img className="book-preview-image" src={ thumbnail } alt={ title } />
+        </Link>
+        <div className="book-preview-info">
+          <h2 className="book-preview-title">{ title }</h2>
+          <p className="book-preview-price">{ currencySign }{ amount }</p>
+          <Link className="book-preview-edit-link" to={ `/book/edit/${id}` }></Link>
+        </div>
       </article>
   );
 }
