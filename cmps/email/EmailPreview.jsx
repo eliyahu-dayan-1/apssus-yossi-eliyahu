@@ -15,7 +15,7 @@ export class EmailPreview extends React.Component {
 
 
     iconLink = (iconName) => {
-        return <img className="icon" src={`../../assets/img/icons/${iconName}`} alt="iconName" />
+        return <img className="icon" src={`./assets/img/icons/${iconName}`} alt="iconName" />
     }
 
     convertTimeStamp = () => {

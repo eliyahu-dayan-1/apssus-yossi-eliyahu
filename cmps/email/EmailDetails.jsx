@@ -55,7 +55,7 @@ export class EmailDetails extends React.Component {
             <div className="email-details flex column grow-1">
                 <div className="return" onClick={() => {
                     history.goBack();
-                }}><img src="../../assets/img/icons/return.png" alt="" /></div>
+                }}><img src="./assets/img/icons/return.png" alt="" /></div>
 
                 <div className="details grow-1">
                     <div className="subject">{email.subject}</div>

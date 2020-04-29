@@ -66,7 +66,7 @@ export class NewEmail extends React.Component {
                         
                 </form>
                 <div className="message-footer">
-                    <div className="send" onClick={() => onSend()}><img className="icon" src="../../assets/img/icons/send.png" alt="send" /></div>
+                    <div className="send" onClick={() => onSend()}><img className="icon" src="./assets/img/icons/send.png" alt="send" /></div>
                 </div>
             </div>
         )
