@@ -25,7 +25,7 @@ export default class NotesFilter extends React.Component {
         type="text"
         name="searchStr"
         value={ searchStr }
-        className="search-notes-input"
+        className="search-input"
         onChange={ this.handleChange }
         placeholder="Search note..." />
     );
