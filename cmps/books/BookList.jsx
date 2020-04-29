@@ -8,7 +8,7 @@ export default function bookList({ books }) {
       { books.map(book =>
         <BookPreview key={ book.id } book={ book } />) }
       <Link className="book-preview add-book-link" to="/book/add">
-        <img className="add-book-image" src="./assets/img/add-book.png" alt="Add book"/>
+        <img className="add-book-image" src="./assets/img/add-book.png" alt="Add book" title="Add book"/>
       </Link>
     </section>
   );

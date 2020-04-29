@@ -13,7 +13,7 @@ export default class BookAdd extends React.Component {
       .then(({ items }) => {
         this.setState(prevState => ({
           ...prevState,
-          books: items,
+          books: items || [],
           [name]: value,
         }));
       });
@@ -30,9 +30,9 @@ export default class BookAdd extends React.Component {
 
   getBook(book) {
     return (
-      <li key={ book.id }>
+      <li className="book-search-item" key={ book.id }>
         { book.volumeInfo.title }
-        <button onClick={ e => this.addBook(e, book) }>+</button>
+        <button className="add-book-button" onClick={ e => this.addBook(e, book) }></button>
       </li>
     );
   }
@@ -40,14 +40,16 @@ export default class BookAdd extends React.Component {
   render() {
     const { queryTxt, books } = this.state;
     return (
-      <div>
-        <h2>Add Book</h2>
-        <input className="books-search-input" type="text" autoFocus name="queryTxt" value={ queryTxt } onChange={ this.handleInput }/>
-        <ul>
-          { books.map(book => this.getBook(book)) }
-        </ul>
-        <button onClick={ () => { this.props.history.goBack(); } }>Back</button>
-      </div>
+      <main className="add-book-container">
+        <div className="add-book-inner">
+          <h2 className="add-book-title">Add Book</h2>
+          <input className="books-search-input" type="text" autoFocus name="queryTxt" value={ queryTxt } onChange={ this.handleInput }/>
+          <ul>
+            { books.map(book => this.getBook(book)) }
+          </ul>
+          <button className="back-button" onClick={ () => { this.props.history.goBack(); } }></button>
+        </div>
+      </main>
     );
   }
 }
