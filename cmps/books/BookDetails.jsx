@@ -32,7 +32,6 @@ export default class BookDetails extends React.Component {
       });
   }
 
-
   getAuthorsHTML(autor, i, autors) {
     if (i !== autors.length - 1) {
       return <span key={ i }>{autor}, </span>;
@@ -98,37 +97,39 @@ export default class BookDetails extends React.Component {
     const currencySign = getCurrencySign(currencyCode);
     return (
       !book ? Loading :
-      <div>
-        <h2 className="book-title">{ title }</h2>
-        <h3 className="book-subtitle">{ subtitle }</h3>
-        <img src={ thumbnail } alt={ title } />
-        <p className={ `book-info book-price ${this.getColorClass(amount)}` }>
-          Price:&nbsp;
-          { currencySign }
-          { amount }
-        </p>
-        <p className="book-info book-id">Id: { id }</p>
-        <p className="book-info book-authors">
-          Authors:&nbsp;
-          { authors.map(this.getAuthorsHTML) }
-        </p>
-        <p className="book-info book-published-date">Published: { publishedDate }{ this.getAgeHTML(publishedDate) }</p>
-        <p className="book-info book-description">
-          Description: { <LongTxt text={ description } isLongTxtShown={ isLongTxtShown }/> }
-          { !isLongTxtShown &&
-          <a onClick={ this.onShowHideFullDescription.bind(this) }> read more</a> }
-          { isLongTxtShown &&
-          <a onClick={ this.onShowHideFullDescription.bind(this) }> hide</a> }
-        </p>
-        <p className="book-info book-page-count">Pages: { pageCount }{ this.getReadingHTML(pageCount) }</p>
-        <p className="book-info book-categories">
-          Categories:&nbsp;
-          { categories.map(this.getCategoriesHTML) }
-        </p>
-        <p className="book-info book-page-count">language: { language }</p>
-        { isOnSale && <img src="../assets/img/sale.png" className="sale-icon" /> }
-        <button onClick={ () => { this.props.history.goBack(); } }>Back</button>
-      </div>
+      <main className="book-details-container">
+        <div className="book-details-inner">
+          <h2 className="book-details-title">{ title }</h2>
+          <h3 className="book-details-subtitle">{ subtitle }</h3>
+          <img className="book-details-image" src={ thumbnail } alt={ title } />
+          <p className={ `book-info book-price ${this.getColorClass(amount)}` }>
+            Price:&nbsp;
+            { currencySign }
+            { amount }
+          </p>
+          <p className="book-info book-id">Id: { id }</p>
+          <p className="book-info book-authors">
+            Authors:&nbsp;
+            { authors.map(this.getAuthorsHTML) }
+          </p>
+          <p className="book-info book-published-date">Published: { publishedDate }{ this.getAgeHTML(publishedDate) }</p>
+          <p className="book-info book-description">
+            Description: { <LongTxt text={ description } isLongTxtShown={ isLongTxtShown }/> }
+            { description.length > 99 && !isLongTxtShown &&
+            <a className="read-more-link" onClick={ this.onShowHideFullDescription.bind(this) }>read more</a> }
+            { description.length > 99 && isLongTxtShown &&
+            <a className="hide-link" onClick={ this.onShowHideFullDescription.bind(this) }>hide</a> }
+          </p>
+          <p className="book-info book-page-count">Pages: { pageCount }{ this.getReadingHTML(pageCount) }</p>
+          <p className="book-info book-categories">
+            Categories:&nbsp;
+            { categories.map(this.getCategoriesHTML) }
+          </p>
+          <p className="book-info book-page-count">language: { language }</p>
+          { isOnSale && <img src="./assets/img/sale.png" className="sale-icon" /> }
+          <button className="back-button" onClick={ () => { this.props.history.goBack(); } }></button>
+        </div>
+      </main>
     );
   }
 }
