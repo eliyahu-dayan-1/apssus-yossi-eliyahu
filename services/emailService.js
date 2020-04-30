@@ -143,14 +143,14 @@ function _getGMails() {
     storageService.store(MAILS_KEY, gEmails);
 }
 
-function addEmail(email){
+function addEmail(email) {
     const newMail = _createNewEmail(email);
 
     gEmails.push(newMail)
     storageService.store(MAILS_KEY, gEmails);
 }
 
-function deleteEmailById(id){
+function deleteEmailById(id) {
     const email = gEmails.find(email => email.id === id)
     email.isDraft = true
     storageService.store(MAILS_KEY, gEmails);
@@ -159,14 +159,10 @@ function deleteEmailById(id){
 
 function query(searchValue = undefined, previewCategory = [], orderBy = { category: 'sentAt', direction: true }) {
     var mails = gEmails
-
     if (previewCategory.length && !searchValue) {
         mails = mails.filter(mail => {
             return previewCategory.some(category => {
-                if(mail.isTrash && category !== 'isTrash') {
-                    console.log('bli')
-                    return false;
-                }
+                if (mail.isTrash && category !== 'isTrash') return false;
                 return mail[category] === true;
             })
         })
@@ -174,7 +170,9 @@ function query(searchValue = undefined, previewCategory = [], orderBy = { catego
 
     if (searchValue && previewCategory) {
         mails = mails.filter(mail => {
-            return previewCategory.some(category => mail[category].toLowerCase().includes(searchValue))
+            return previewCategory.some(category => {
+                return mail[category].toString().toLowerCase().includes(searchValue)
+            })
         })
     }
 
@@ -204,10 +202,10 @@ function add(mail) {
     storageService.store(MAILS_KEY, gEmails);
 }
 
-function toggleLabel(label, id){
+function toggleLabel(label, id) {
     const email = gEmails.find(email => email.id === id)
     email[label] = !email[label]
-    storageService.store(MAILS_KEY, gEmails)     
+    storageService.store(MAILS_KEY, gEmails)
     return Promise.resolve('successful save');
 }
 

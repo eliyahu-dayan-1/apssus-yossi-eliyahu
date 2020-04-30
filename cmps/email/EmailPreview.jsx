@@ -41,11 +41,13 @@ export class EmailPreview extends React.Component {
         const { email } = this.state;
         const { onSelectEmail, onToggleLabel, onDeleteMail } = this.props;
         const {iconLink, convertTimeStamp} = this;
-
+        
         if(!email) return < Loading/>
 
+        const readStatus = (email.isRead)? 'read-mail': 'unread-mail';
+
         return (
-            <Link className="email-preview further-details flex space-between" onClick={() => onSelectEmail(email.id)} >
+            <Link className={`email-preview ${readStatus} further-details flex space-between`} onClick={() => onSelectEmail(email.id)} >
                 <div className="option flex">
                     <div className="choose" onClick = {(event) => onToggleLabel(event, 'isChoose', email.id)} >{(email.isChoose) ? iconLink("check-box-full.png") : iconLink("check-box-empty.png")}</div>
                     <div className="trash" onClick = {(event) => onDeleteMail(event, email.id)} > {iconLink("trash.png")}</div>

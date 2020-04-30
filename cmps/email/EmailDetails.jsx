@@ -20,7 +20,6 @@ export class EmailDetails extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.props)
     }
 
     convertTimeStamp = () => {

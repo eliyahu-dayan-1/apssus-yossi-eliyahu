@@ -29,7 +29,7 @@ export default class App extends React.Component {
               <Route exact component={ BookEdit } path="/book/edit/:theBookId" />
               <Route component={ BookDetails } path="/book/:theBookId/:theBookName" />
 
-              <Route component={ EmailPage } path="/:previewCategory" />
+              <Route component={ EmailPage } path="/email/:previewCategory" />
           </Switch>
           <Footer />
         </div>

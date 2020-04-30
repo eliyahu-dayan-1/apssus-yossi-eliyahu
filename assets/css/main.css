@@ -4,6 +4,10 @@
   /* border: 1px solid black; */
 }
 
+html{
+  font-size: 16px;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -146,6 +150,7 @@ main {
 
 .homepage-app-link:hover {
   transform: scale(1.2);
+
 }
 
 .homepage-app-link:not(:last-child) {

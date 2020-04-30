@@ -16,6 +16,7 @@ export class EmailStatus extends React.Component {
     }
 
     showReadStatus = () => {
+    
         const emails = this.props.emails || [];
         const readEmails = emails.filter(email => email.isRead) || [];
         const emailStatus = parseInt(readEmails.length / (emails.length || 1) * 100);
@@ -34,7 +35,7 @@ export class EmailStatus extends React.Component {
 
             <div>
                 <div className="status-container">
-                    <div className="status-bar" style={{ width: emailStatus }} >
+                    <div className="status-bar" style={{ width: emailStatus + "%" }} >
                         <span>{emailStatus + '%'}</span>
                     </div>
                 </div>

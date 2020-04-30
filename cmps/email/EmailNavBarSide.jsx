@@ -8,13 +8,12 @@ const { Link } = ReactRouterDOM;
 export class EmailNavBarSide extends  React.Component {
 
     changeUrl = (value) => {
-        this.props.history.push(`/${value}`)
+        this.props.history.push(`/${'email'}/${value}`)
         eventBus.emit('url-change', '')
     }
 
     addParam = (label, value) => {
        const {pathname} =  this.props.history.location
-       console.log(this.props.history.location);
        
        this.props.history.push(`${pathname}?${label}=${value}`)
        eventBus.emit('url-change', '')

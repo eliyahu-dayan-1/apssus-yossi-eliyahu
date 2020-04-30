@@ -3,7 +3,6 @@ import { Loading } from '../Loading.jsx'
 import { emailService } from '../../services/emailService.js';
 import { eventBus } from "../../services/eventBusService.js";
 import { EmailNavBarUp } from '../../cmps/email/EmailNavBarUp.jsx';
-import { utilService } from '../../services/utilService.js';
 
 
 
@@ -14,11 +13,15 @@ export class EmailList extends React.Component {
         previewCategory: null,
         searchValue: null,
         selectedEmail: null,
+        orderBy: { category: 'sentAt', direction: true }
     }
 
     componentDidMount() {
         this.loadEmails()
-        eventBus.on('show-msg', (msg) => this.setState(prevState => msg, () => this.loadEmails()))
+        eventBus.on('show-msg', (msg) => this.setState(prevState => {
+            return {previewCategory: msg.previewCategory,
+                     searchValue: msg.searchValue}
+        }, () => this.loadEmails()))
     }
 
 
@@ -48,11 +51,10 @@ export class EmailList extends React.Component {
     loadEmails = () => {
         let previewCategory = this.props.match.params.previewCategory
         previewCategory = [`is${this.capitalize(previewCategory)}`]
-        console.log(previewCategory)
     
-        emailService.query(this.state.searchValue, previewCategory)
+        emailService.query(this.state.searchValue, previewCategory, this.state.orderBy)
             .then(emails => {
-                this.setState({ emails, previewCategory }, () => console.log(this.state.emails))
+                this.setState({ emails, previewCategory })
             })
     }
 

@@ -12,12 +12,10 @@ export class NewEmail extends React.Component {
     }
 
     componentDidMount() {
-        console.log('mount')
     }
 
 
     componentDidUpdate(prevProps) {
-        console.log('update')
     }
 
     handleChange = ({ target }) => {
@@ -47,7 +45,6 @@ export class NewEmail extends React.Component {
 
         const { to, subject, body } = this.state.email
         const { onExit, onSend } = this
-        console.log(to)
         return (
 
             <div className="new-email flex column">

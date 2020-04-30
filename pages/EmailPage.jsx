@@ -30,7 +30,6 @@ export default class EmailPage extends React.Component {
         this.loadEmails()
         this.readUrl(undefined)
         eventBus.on('close-new-message', (email) => {
-            console.log(email)
             emailService.addEmail(email)
             // this.setState({ isNewMessageOpen: false})
             var value = this.props.location.pathname
@@ -50,11 +49,10 @@ export default class EmailPage extends React.Component {
     loadEmails = () => {
         let previewCategory = this.props.match.params.previewCategory
         previewCategory = [`is${this.capitalize(previewCategory)}`]
-        console.log(previewCategory)
 
         emailService.query(this.state.searchValue, previewCategory)
             .then(emails => {
-                this.setState({ emails, previewCategory }, () => console.log(this.state.emails))
+                this.setState({ emails, previewCategory })
             })
     }
 
@@ -68,7 +66,6 @@ export default class EmailPage extends React.Component {
         if (prevProps && prevProps.location) prevQueryString = prevProps.location.search;
         const queryStringData = utilService.getJsonFromUrl(queryString)
 
-        console.log(this.props.location)
         if (!queryStringData.compose && this.state.isNewMessageOpen) this.setState({ isNewMessageOpen: false, queryStringData: { compose: "empty" } }, () => console.log(this.state))
         if (!this.state.isNewMessageOpen && queryStringData.compose === 'newMessage') {
             this.setState({ isNewMessageOpen: true, queryStringData }, () => console.log(this.state))
@@ -82,15 +79,14 @@ export default class EmailPage extends React.Component {
     render() {
         const { queryStringData, isNewMessageOpen, emails } = this.state
 
-        console.log('email page')
         return (
             <Router >
                 <main className="email-main flex">
                     <EmailNavBarSide history={this.props.history} emails={emails}/>
 
                     <Switch>
-                        <Route component={EmailDetails} path="/:previewCategory/:emailId" />
-                        <Route exact component={EmailList} path="/:previewCategory" />
+                        <Route component={EmailDetails} path="/email/:previewCategory/:emailId" />
+                        <Route exact component={EmailList} path="/email/:previewCategory" />
                     </Switch>
 
                     {isNewMessageOpen && <NewEmail />}

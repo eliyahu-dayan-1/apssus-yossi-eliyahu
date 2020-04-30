@@ -93,8 +93,12 @@
     padding: 20px 10px;
 }
 
-.emails-preview{
+.read-mail{
     background-color: rgba(214, 213, 213, 0.192);
+}
+
+.unread-mail{
+    background-color: rgba(192, 189, 189, 0.979);
 }
 
 .email-preview{
@@ -117,15 +121,10 @@ img.icon{
 }
 
 img.icon:hover{
-    background-color: rgb(197, 194, 194);
+    transform: scale(1.2);
 }
 
 /* email details */
-
-.email-details{
-   
-    background-color: ;
-} 
 
 
 .email-details .return{
@@ -172,7 +171,7 @@ img.icon:hover{
 
 .new-email{
     position: fixed;
-    background-color: rgb(222, 220, 231);
+    background-color: rgb(227, 224, 231);
     right: 20px;
     bottom: 50px;
     height: 70vh;
@@ -181,16 +180,16 @@ img.icon:hover{
 
 }
 
-.new-email .message-header{
-    background-color: lightcyan;
+.new-email .message-header, .new-email .message-footer{
+    background-color: rgb(176, 181, 185);
     padding: 10px 20px;
     align-items: center;
 }
 
+
 .new-email .message-header > *:first-child{
-   font-family: caveat;
    font-weight: bold;
-    font-size: 35px;
+    font-size: 20px;
 }
 
 .new-email .message-header .exit{
@@ -216,14 +215,22 @@ img.icon:hover{
     padding-top: 15px;
 }
 
-.new-email .message-footer{
-    background-color: lightcyan;
-}
 
 .new-email .message-footer .send{
     float: right;
     cursor: pointer;
-    padding: 10px 30px;
+    padding: 10px 50px;
+    transition: 0.5s;
+}
+
+.new-email .message-footer img{
+    width: 40px;
+    background: 0;
+}
+
+.new-email .message-footer .send:hover{
+    background: 0;
+    transform: translateX(40px);
 }
 
 .new-email textarea{
