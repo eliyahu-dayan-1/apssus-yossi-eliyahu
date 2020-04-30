@@ -152,8 +152,9 @@ function addEmail(email) {
 
 function deleteEmailById(id) {
     const email = gEmails.find(email => email.id === id)
-    email.isDraft = true
+    email.isTrash = true
     storageService.store(MAILS_KEY, gEmails);
+    return Promise.resolve(gEmails);
 }
 
 

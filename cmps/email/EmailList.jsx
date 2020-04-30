@@ -19,8 +19,10 @@ export class EmailList extends React.Component {
     componentDidMount() {
         this.loadEmails()
         eventBus.on('show-msg', (msg) => this.setState(prevState => {
-            return {previewCategory: msg.previewCategory,
-                     searchValue: msg.searchValue}
+            return {
+                previewCategory: msg.previewCategory,
+                searchValue: msg.searchValue
+            }
         }, () => this.loadEmails()))
     }
 
@@ -46,12 +48,13 @@ export class EmailList extends React.Component {
         ev.stopPropagation()
         ev.preventDefault()
         emailService.deleteEmailById(id)
+            .then(emails => this.setState({ emails }));
     }
 
     loadEmails = () => {
         let previewCategory = this.props.match.params.previewCategory
         previewCategory = [`is${this.capitalize(previewCategory)}`]
-    
+
         emailService.query(this.state.searchValue, previewCategory, this.state.orderBy)
             .then(emails => {
                 this.setState({ emails, previewCategory })
